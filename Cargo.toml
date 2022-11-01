@@ -1,0 +1,22 @@
+[package]
+name = "catherine-beta"
+description = "The rusty defense framework!"
+version = "0.2.44"
+authors = ["Hifumi1337"]
+edition = "2021"
+repository = "https://github.com/hifumitech/catherine"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+os_type = { git = "https://github.com/Hifumi1337/os_type", branch = "main", version = "2.4.1" }
+chrono = "0.4"
+colored = "2"
+serde = "1.0"
+serde_json = "1.0"
+libloading = "0.7"
+prettytable-rs = "0.9.0"
+mercy = "1.1.11"
+
+[target.'cfg(target_os = "windows")'.dependencies]
+ipconfig = "0.3.0"

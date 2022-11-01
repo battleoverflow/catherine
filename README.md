@@ -1,26 +1,20 @@
-# Catherine
+<h1 align="center">
+    <img src="assets/catherine_framework_v1.png" />
+</h1>
 
-<div align="center">
-    <h2>
-        <i>
-            The rusty blue team defense framework! 
-        </i>
-    </h2>
-</div>
+<h2 align="center">
+    The rusty defense framework!
+</h2>
 
-<div align="center">
-    <h2>
-        📚 <a href="https://catherine-docs.hifumi1337.io/">Documentation</a>
-    </h2>
-</div>
+<h3 align="center">
+📚 <a href="https://docs.rs/mercy/latest/mercy/">Documentation</a>
+</h3>
 
----
+<br />
 
-[![](https://img.shields.io/github/last-commit/hifumitech/catherine.svg?style=flat)]()
-[![](https://img.shields.io/github/commit-activity/y/hifumitech/catherine.svg?style=flat)]()
+Catherine is a blue team security framework created to make retrieving data, decoding data, and overall defense operations easier. Catherine is currently in a stable beta state, offering cryptographic processes, hexadecimal data collection, real-time database analysis, and much more.
 
-[![](https://img.shields.io/badge/$-support-ff69b4.svg?style=flat)](https://github.com/sponsors/Hifumi1337/)
-[![](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/hifumitech)
+Catherine does depend on custom built [modules](https://github.com/hifumitech/catherine-modules), which are not required, but recommended to enhance the tools at your disposal.
 
 ## Install
 Installing Catherine is easy, all you have to do is run the installer and you're good to go!
@@ -43,7 +37,7 @@ curl https://raw.githubusercontent.com/hifumitech/catherine/main/Catherine_Insta
 Already have Catherine modules installed? Run the installer again to update the modules!
 
 ## Issues
-If you are unable to run the installation script on WSL, try running these commands:
+If you are unable to run the installation script on WSL, try running these commands first:
 ```bash
 chmod +x Catherine_Installer
 ```

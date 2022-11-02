@@ -7,7 +7,7 @@
 </h2>
 
 <h3 align="center">
-📚 <a href="https://docs.rs/mercy/latest/mercy/">Documentation</a>
+📚 <a href="https://catherine-docs.hifumi1337.io/">Documentation</a>
 </h3>
 
 <br />

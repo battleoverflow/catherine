@@ -1,5 +1,5 @@
 /*
-    Hifumi Technologies (https://github.com/hifumitech)
+    Umiko Security (https://github.com/umikosec)
     File: src/catherine.rs
 
     Author(s): {
@@ -168,7 +168,7 @@ pub fn init(boot_msg: &str) {
                 println!("Author: Hifumi (https://github.com/Hifumi1337)\n");
                 println!("Support the project!");
                 println!("GitHub Sponsors: https://github.com/sponsors/Hifumi1337");
-                println!("Patreon: https://www.patreon.com/hifumitech\n");
+                println!("Patreon: https://www.patreon.com/umikosec\n");
             },
 
             "help" => {

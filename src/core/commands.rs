@@ -1,5 +1,5 @@
 /*
-    Hifumi Technologies (https://github.com/hifumitech)
+    Umiko Security (https://github.com/umikosec)
     File: src/core/commands.rs
 
     Author(s): {
@@ -89,7 +89,7 @@ pub fn view_modules() {
         let dl_modules = catherine_shell(NAME, VERSION, "dl_modules".blue());
 
         if dl_modules == "yes" || dl_modules == "y" {
-            git_downloader("https://github.com/hifumitech/catherine-modules");
+            git_downloader("https://github.com/umikosec/catherine-modules");
 
             Command::new("rm")
                     .arg("-r")
@@ -148,7 +148,7 @@ pub fn set_module() {
         let dl_modules = catherine_shell(NAME, VERSION, "dl_modules".blue());
 
         if dl_modules == "yes" || dl_modules == "y" {
-            git_downloader("https://github.com/hifumitech/catherine-modules");
+            git_downloader("https://github.com/umikosec/catherine-modules");
 
             Command::new("rm")
                     .arg("-r")
@@ -329,7 +329,7 @@ pub fn set_module() {
             "update" => {
                 println!("Updating Catherine...");
 
-                git_downloader("https://github.com/hifumitech/catherine-modules");
+                git_downloader("https://github.com/umikosec/catherine-modules");
 
                 Command::new("rm")
                         .arg("-r")

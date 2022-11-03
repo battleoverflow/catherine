@@ -1,5 +1,5 @@
 /*
-    Hifumi Technologies (https://github.com/hifumitech)
+    Umiko Security (https://github.com/umikosec)
     File: src/modules/hex.rs
 
     Author(s): {

@@ -13,5 +13,5 @@ mod catherine;
 
 fn main() {
     catherine::init("Catherine initializing...");
-    catherine::shutdown("Shutdown successful...");
+    catherine::shutdown("Shutting down...");
 }

@@ -1,12 +1,13 @@
 [package]
-name = "catherine-beta"
-description = "The rusty defense framework!"
-version = "0.2.44"
+name = "catherine"
+description = "Catherine is a blue team security framework created to make retrieving data, decoding data, and overall defense operations easier"
+version = "0.2.45"
 authors = ["Hifumi1337"]
+license = "BSD-2-Clause"
+categories = ["cryptography", "decoding"]
+keywords = ["cybersecurity", "blueteam", "framework", "security"]
 edition = "2021"
-repository = "https://github.com/umikosec/catherine"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+repository = "https://github.com/umikolabs/catherine"
 
 [dependencies]
 os_type = { git = "https://github.com/Hifumi1337/os_type", branch = "main", version = "2.4.1" }

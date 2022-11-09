@@ -1,5 +1,5 @@
 /*
-    Umiko Security (https://github.com/umikosec)
+    Umiko Labs (https://github.com/umikolabs)
     File: src/core/x.rs
 
     Author(s): {

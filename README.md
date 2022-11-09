@@ -16,6 +16,11 @@ Catherine is a blue team security framework created to make retrieving data, dec
 
 Catherine does depend on custom built [modules](https://github.com/umikolabs/catherine-modules), which are not required, but recommended to enhance the tools at your disposal.
 
+Catherine is now available on Cargo! You can install the executable (+ setup the PATH) by running this command:
+```
+cargo install catherine
+```
+
 ## Install
 Installing Catherine is easy, all you have to do is run the installer and you're good to go!
 

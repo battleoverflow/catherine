@@ -1,13 +1,13 @@
 [package]
 name = "catherine"
 description = "Catherine is a blue team security framework created to make retrieving data, decoding data, and overall defense operations easier"
-version = "0.2.45"
+version = "0.2.46"
 authors = ["Hifumi1337"]
 license = "BSD-2-Clause"
 categories = ["cryptography"]
 keywords = ["cybersecurity", "blueteam", "framework", "security"]
 edition = "2021"
-repository = "https://github.com/umikolabs/catherine"
+repository = "https://github.com/hifumisoftware/catherine"
 
 [dependencies]
 os_type = { git = "https://github.com/Hifumi1337/os_type", branch = "main", version = "2.4.1" }
@@ -18,6 +18,7 @@ serde_json = "1.0"
 libloading = "0.7"
 prettytable-rs = "0.9.0"
 mercy = "1.1.11"
+rand = "0.7.2"
 
 [target.'cfg(target_os = "windows")'.dependencies]
 ipconfig = "0.3.0"

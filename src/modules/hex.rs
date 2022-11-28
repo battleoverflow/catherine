@@ -1,5 +1,5 @@
 /*
-    Umiko Labs (https://github.com/umikolabs)
+    Hifumi Software (https://github.com/hifumisoftware)
     File: src/modules/hex.rs
 
     Author(s): {

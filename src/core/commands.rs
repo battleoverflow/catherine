@@ -170,6 +170,8 @@ pub fn set_module() {
         } else {
             println!("Modules not installed");
         }
+
+        set_current_dir(reset_dir_buf).expect("Unable to set directory");
     } else {
         let set_module_mode = catherine_shell(NAME, VERSION, "set_module".blue());
         let set_module_str: &str = &set_module_mode;
@@ -247,18 +249,19 @@ pub fn set_module() {
 
                     hex("get_data_dump", &set_hex_dump_file);
                 } else if choose_your_hex_method == "c" {
-                    let set_hex_dump_file = catherine_shell(NAME, VERSION, "set_module/hex/set_file (ex: main.exe)".blue());
+                    let set_hex_dump_file = catherine_shell(NAME, VERSION, "set_module/hex/set_file (ex: /path/to/main.exe)".blue());
                     let module_activating: ColoredString = "Activating Hex Module...\n".green();
                     
                     println!("{}", module_activating);
                     thread::sleep(time::Duration::from_secs(1));
-    
+                    
                     hex("access_c_lib", &set_hex_dump_file);
-                    set_current_dir(reset_dir_buf).expect("Unable to set directory");
 
                     match var("HOME") {
                         Ok(value) => {
                             let hex_file = format!("{}/maniac_c_lib.hex", value);
+
+                            set_current_dir(reset_dir_buf).expect("Unable to set directory");
 
                             // Moves maniac_c_lib.hex to current directory (location of the catherine executable on the user's system)
                             if Path::new(&hex_file).exists() {
@@ -267,7 +270,7 @@ pub fn set_module() {
                                         .arg(".")
                                         .spawn()
                                         .expect("Unable to process request");
-                                
+
                                 println!("Data dumped to maniac_c_lib.hex");
                             }
                         },
@@ -298,26 +301,48 @@ pub fn set_module() {
                 } else {
                     println!("Database is not supported yet");
                 }
-    
 
                 set_current_dir(reset_dir_buf).expect("Unable to set directory");
             },
 
             "exe_dump" | "Exe_Dump" => {
                 let module_activating: ColoredString = "Activating Executable Dump Module...\n".green();
-        
+                let note_for_user: ColoredString = "Only Windows exec format are accepted!\n".red();
+                
                 println!("{}", module_activating);
+                println!("NOTE: {}", note_for_user);
                 thread::sleep(time::Duration::from_secs(1));
     
                 if env::consts::OS == "linux" {
+                    let run_exit: ColoredString = "After entering the location of your file, run the 'dump' command. After that, run the 'exit' command to move the file into your current directory\n".green();
+                    println!("{}", run_exit);
+
                     Command::new(EXE_PATH)
                             .status()
                             .expect("Failed to execute process");
+
+                    match var("HOME") {
+                        Ok(value) => {
+                            let header_file = format!("{}/header_dump.log", value);
+
+                            set_current_dir(reset_dir_buf).expect("Unable to set directory");
+
+                            // Moves header_dump.log to current directory (location of the catherine executable on the user's system)
+                            if Path::new(&header_file).exists() {
+                                Command::new("mv")
+                                        .arg(header_file)
+                                        .arg(".")
+                                        .spawn()
+                                        .expect("Unable to process request");
+
+                                println!("Data dumped to header_dump.log");
+                            }
+                        },
+                        Err(err) => println!("Unable to interpret environment variable. Is your $HOME variable set?\n {}", err),
+                    }
                 } else {
                     println!("Unable to run module on this operating system");
                 }
-
-                set_current_dir(reset_dir_buf).expect("Unable to set directory");
             },
     
             "list" | "view" => {

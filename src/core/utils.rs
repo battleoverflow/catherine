@@ -324,6 +324,7 @@ pub fn pretty_output(input: &str, output: &str, left_col: &str, right_col: &str)
     table.printstd();
 }
 
+// Sets the path to the $HOME directory
 pub fn set_home() {
     let home_env = "HOME";
     

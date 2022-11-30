@@ -1,5 +1,5 @@
 /*
-    Hifumi Software (https://github.com/hifumisoftware)
+    CyberSuki (https://github.com/cybersuki)
     File: src/main.rs
 
     Author(s): {

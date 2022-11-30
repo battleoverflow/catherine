@@ -38,7 +38,7 @@ function Catherine_Installer() {
     echo "[+] Downloading external modules..."
     echo ""
 
-    git clone https://github.com/hifumisoftware/catherine-modules
+    git clone https://github.com/cybersuki/catherine-modules
     mv catherine-modules $catherineDir
 
     echo ""

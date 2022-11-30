@@ -14,7 +14,7 @@
 
 Catherine is a blue team security framework created to make retrieving data, decoding data, and overall defense operations easier. Catherine is currently in a stable beta state, offering cryptographic processes, hexadecimal data collection, real-time database analysis, and much more.
 
-Catherine does depend on custom built [modules](https://github.com/umikolabs/catherine-modules), which are not required, but recommended to enhance the tools at your disposal.
+Catherine does depend on custom built [modules](https://github.com/cybersuki/catherine-modules), which are not required, but recommended to enhance the tools at your disposal.
 
 Catherine is now available on Cargo! You can install the executable (+ setup the PATH) by running this command:
 ```
@@ -36,7 +36,7 @@ Now run the installation script:
 
 If you have cURL installed, feel free to run the installer this way:
 ```bash
-curl https://raw.githubusercontent.com/umikolabs/catherine/main/Catherine_Installer | bash
+curl https://raw.githubusercontent.com/cybersuki/catherine/main/Catherine_Installer | bash
 ```
 
 Already have Catherine modules installed? Run the installer again to update the modules!

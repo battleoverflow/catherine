@@ -1,5 +1,5 @@
 /*
-    Umiko Labs (https://github.com/umikolabs)
+    CyberSuki (https://github.com/cybersuki)
     File: src/core/utils.rs
 
     Author(s): {
@@ -324,6 +324,7 @@ pub fn pretty_output(input: &str, output: &str, left_col: &str, right_col: &str)
     table.printstd();
 }
 
+// Sets the path to the $HOME directory
 pub fn set_home() {
     let home_env = "HOME";
     

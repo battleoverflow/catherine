@@ -1,5 +1,5 @@
 /*
-    Umiko Labs (https://github.com/umikolabs)
+    CyberSuki (https://github.com/cybersuki)
     File: src/core/x.rs
 
     Author(s): {

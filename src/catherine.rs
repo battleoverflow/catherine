@@ -1,5 +1,5 @@
 /*
-    Umiko Labs (https://github.com/umikolabs)
+    CyberSuki (https://github.com/cybersuki)
     File: src/catherine.rs
 
     Author(s): {
@@ -49,7 +49,7 @@ use mercy::{
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.2.45";
+pub(crate) static VERSION: &str = "0.2.47";
 
 pub(crate) static NETSCAN_PATH: &str = ".catherine/catherine-modules/net/netscan/dist/netscan";
 pub(crate) static PARSER_PATH: &str = ".catherine/catherine-modules/web/web_parser/dist/parser";
@@ -168,7 +168,7 @@ pub fn init(boot_msg: &str) {
                 println!("Author: Hifumi (https://github.com/Hifumi1337)\n");
                 println!("Support the project!");
                 println!("GitHub Sponsors: https://github.com/sponsors/Hifumi1337");
-                println!("Patreon: https://www.patreon.com/umikolabs\n");
+                println!("Patreon: https://www.patreon.com/cybersuki\n");
             },
 
             "help" => {

@@ -3,7 +3,7 @@
 ###################################################
 #                                                 #
 # Project: Catherine                              #
-# File: Catherine_Installer                       #
+# File: Catherine_Uninstaller                     #
 #                                                 #
 # Author(s): {                                    #
 #   Hifumi1337 (https://github.com/Hifumi1337)    #
@@ -11,38 +11,28 @@
 #                                                 #
 ###################################################
 
-version="1.1.10"
+version="1.0.1"
 catherineDir=~/.catherine
 
 function info() {
     echo ""
-    echo "[!] Running Installer (+ Updater) v$version"
+    echo "[!] Running Uninstaller v$version"
 }
 
 info
 
-function Catherine_Installer() {
+function Catherine_Uninstaller() {
     if [ -d "$catherineDir" ];
     then
         echo ""
-        echo "[+] Configuring cache..."
+        echo "[+] Clearing cache..."
         echo ""
         
         sudo rm -r $catherineDir
-        mkdir $catherineDir
-    else
-        mkdir $catherineDir
     fi
 
     echo ""
-    echo "[+] Downloading external modules..."
-    echo ""
-
-    git clone https://github.com/cybersuki/catherine-modules
-    mv catherine-modules $catherineDir
-
-    echo ""
-    echo "[+] Installation complete"
+    echo "[+] Successfully uninstalled"
     echo ""
 }
 

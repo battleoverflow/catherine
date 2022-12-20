@@ -7,22 +7,22 @@
 </h2>
 
 <h3 align="center">
-📚 <a href="https://catherine-docs.hifumi1337.io/">Documentation</a>
+📚 <a href="https://docs.rs/crate/catherine/latest">Documentation</a>
 </h3>
 
 <br />
 
 Catherine is a blue team security framework created to make retrieving data, decoding data, and overall defense operations easier. Catherine is currently in a stable beta state, offering cryptographic processes, hexadecimal data collection, real-time database analysis, and much more.
 
-Catherine does depend on custom built [modules](https://github.com/cybersuki/catherine-modules), which are not required, but recommended to enhance the tools at your disposal.
+Catherine does depend on custom built [modules](https://github.com/CatherineFramework/modules), which are not required, but recommended to enhance the tools at your disposal.
 
 Catherine is now available on Cargo! You can install the executable (+ setup the PATH) by running this command:
 ```
 cargo install catherine
 ```
 
-## Install
-Installing Catherine is easy, all you have to do is run the installer and you're good to go!
+## Modules Install
+Installing Catherine modules are easy, all you have to do is run the installer and you're good to go!
 
 First, make sure the installer is setup as an executable:
 ```bash
@@ -36,17 +36,13 @@ Now run the installation script:
 
 If you have cURL installed, feel free to run the installer this way:
 ```bash
-curl https://raw.githubusercontent.com/cybersuki/catherine/main/Catherine_Installer | bash
+curl https://raw.githubusercontent.com/CatherineFramework/catherine/main/Catherine_Installer | bash
 ```
 
-Already have Catherine modules installed? Run the installer again to update the modules!
+Already have Catherine modules installed? Run the installer again to update the modules! Or you can run the updates command within the Catherine prompt.
 
 ## Issues
-If you are unable to run the installation script on WSL, try running these commands first:
-```bash
-chmod +x Catherine_Installer
-```
-
+If you are unable to run the installation script on WSL, try running this command first before installing:
 ```bash
 sed -i -e 's/\r$//' Catherine_Installer
 ```

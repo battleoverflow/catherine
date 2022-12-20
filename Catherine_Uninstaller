@@ -1,15 +1,8 @@
 #!/bin/bash
 
-###################################################
-#                                                 #
-# Project: Catherine                              #
-# File: Catherine_Uninstaller                     #
-#                                                 #
-# Author(s): {                                    #
-#   Hifumi1337 (https://github.com/Hifumi1337)    #
-# }                                               #
-#                                                 #
-###################################################
+# Owner: Catherine Framework (https://github.com/CatherineFramework)
+# Project: Catherine
+# License: BSD 2-Clause
 
 version="1.0.1"
 catherineDir=~/.catherine

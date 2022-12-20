@@ -1,10 +1,7 @@
 /*
-    CyberSuki (https://github.com/cybersuki)
-    File: src/catherine.rs
-
-    Author(s): {
-        Hifumi1337 (https://github.com/Hifumi1337)
-    }
+    Owner: Catherine Framework (https://github.com/CatherineFramework)
+    Project: Catherine
+    License: BSD 2-Clause
 */
 
 use std::{
@@ -49,13 +46,13 @@ use mercy::{
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.3.47";
+pub(crate) static VERSION: &str = "0.3.48";
 
-pub(crate) static NETSCAN_PATH: &str = ".catherine/catherine-modules/net/netscan/dist/netscan";
-pub(crate) static PARSER_PATH: &str = ".catherine/catherine-modules/web/web_parser/dist/parser";
-pub(crate) static REDIS_ANALYSIS_PATH: &str = ".catherine/catherine-modules/db_analysis/redis/dist/redis_db";
-pub(crate) static EXE_PATH: &str = ".catherine/catherine-modules/data/exe/dist/exe_dump";
-pub(crate) static MERCY_EXT_PATH: &str = ".catherine/catherine-modules/mercy/dist/mercy_ext";
+pub(crate) static NETSCAN_PATH: &str = ".catherine/modules/net/netscan/dist/netscan";
+pub(crate) static PARSER_PATH: &str = ".catherine/modules/web/web_parser/dist/parser";
+pub(crate) static REDIS_ANALYSIS_PATH: &str = ".catherine/modules/db_analysis/redis/dist/redis_db";
+pub(crate) static EXE_PATH: &str = ".catherine/modules/data/exe/dist/exe_dump";
+pub(crate) static MERCY_EXT_PATH: &str = ".catherine/modules/mercy/dist/mercy_ext";
 
 pub fn init(boot_msg: &str) {
 
@@ -168,7 +165,7 @@ pub fn init(boot_msg: &str) {
                 println!("Author: Hifumi (https://github.com/Hifumi1337)\n");
                 println!("Support the project!");
                 println!("GitHub Sponsors: https://github.com/sponsors/Hifumi1337");
-                println!("Patreon: https://www.patreon.com/cybersuki\n");
+                println!("Patreon: https://www.patreon.com/hifumi1337lol\n");
             },
 
             "help" => {

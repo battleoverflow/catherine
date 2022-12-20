@@ -1,10 +1,7 @@
 /*
-    CyberSuki (https://github.com/cybersuki)
-    File: src/core/commands.rs
-
-    Author(s): {
-        Hifumi1337 (https://github.com/Hifumi1337)
-    }
+    Owner: Catherine Framework (https://github.com/CatherineFramework)
+    Project: Catherine
+    License: BSD 2-Clause
 */
 
 #[allow(unused_imports)]
@@ -82,14 +79,14 @@ pub fn view_modules() {
     set_home();
 
     // Checks if the modules directory exists
-    if existence(".catherine/catherine-modules") != true {
+    if existence(".catherine/modules") != true {
         println!("Missing modules!\n");
         println!("Would you like to download Catherine's external modules now (y/n)? ");
         
         let dl_modules = catherine_shell(NAME, VERSION, "dl_modules".blue());
 
         if dl_modules == "yes" || dl_modules == "y" {
-            git_downloader("https://github.com/cybersuki/catherine-modules");
+            git_downloader("https://github.com/CatherineFramework/modules");
 
             Command::new("rm")
                     .arg("-r")
@@ -103,7 +100,7 @@ pub fn view_modules() {
                     .expect("Unable to process request");
 
             Command::new("mv")
-                    .arg("catherine-modules")
+                    .arg("modules")
                     .arg(".catherine")
                     .output()
                     .expect("Unable to process request");
@@ -113,7 +110,7 @@ pub fn view_modules() {
         }
     } else {
         // JSON file
-        let json_file: &str = ".catherine/catherine-modules/modules.json"; // Local
+        let json_file: &str = ".catherine/modules/modules.json"; // Local
     
         let json_parse = {
             // Load the JSON file and convert to an easier to read format
@@ -141,14 +138,14 @@ pub fn set_module() {
     set_home();
 
     // Checks if the modules directory exists
-    if existence(".catherine/catherine-modules") != true {
+    if existence(".catherine/modules") != true {
         println!("Missing modules!\n");
         println!("Would you like to download Catherine's external modules now (y/n)? ");
 
         let dl_modules = catherine_shell(NAME, VERSION, "dl_modules".blue());
 
         if dl_modules == "yes" || dl_modules == "y" {
-            git_downloader("https://github.com/cybersuki/catherine-modules");
+            git_downloader("https://github.com/CatherineFramework/modules");
 
             Command::new("rm")
                     .arg("-r")
@@ -162,7 +159,7 @@ pub fn set_module() {
                     .expect("Unable to process request");
 
             Command::new("mv")
-                    .arg("catherine-modules")
+                    .arg("modules")
                     .arg(".catherine")
                     .output()
                     .expect("Unable to process request");
@@ -354,7 +351,7 @@ pub fn set_module() {
             "update" => {
                 println!("Updating Catherine...");
 
-                git_downloader("https://github.com/cybersuki/catherine-modules");
+                git_downloader("https://github.com/CatherineFramework/modules");
 
                 Command::new("rm")
                         .arg("-r")
@@ -368,7 +365,7 @@ pub fn set_module() {
                         .expect("Unable to process request");
 
                 Command::new("mv")
-                        .arg("catherine-modules")
+                        .arg("modules")
                         .arg(".catherine")
                         .output()
                         .expect("Unable to process request");
@@ -376,7 +373,7 @@ pub fn set_module() {
     
             "help" => {
                 // JSON file
-                let json_file = ".catherine/catherine-modules/modules.json"; // Local
+                let json_file = ".catherine/modules/modules.json"; // Local
     
                 let json_parse = {
                     // Load the JSON file and convert to an easier to read format

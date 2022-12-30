@@ -1,16 +1,16 @@
 [package]
 name = "catherine"
 description = "Catherine is a blue team security framework created to make retrieving data, decoding data, and overall defense operations easier"
-version = "0.3.48"
-authors = ["Hifumi1337"]
+version = "0.3.49"
+authors = ["azazelm3dj3d"]
 license = "BSD-2-Clause"
 categories = ["cryptography"]
-keywords = ["cybersecurity", "blueteam", "framework", "security"]
+keywords = ["cybersecurity", "blueteam", "framework", "security", "defense"]
 edition = "2021"
-repository = "https://github.com/CatherinFramework/catherine"
+repository = "https://github.com/CatherineFramework/catherine"
 
 [dependencies]
-os_type = { git = "https://github.com/CatherinFramework/os_type", branch = "main", version = "2.4.1" }
+os_type = { git = "https://github.com/CatherineFramework/os_type", branch = "main", version = "2.4.1" }
 chrono = "0.4"
 colored = "2"
 serde = "1.0"

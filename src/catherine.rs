@@ -1,6 +1,6 @@
 /*
-    Owner: Catherine Framework (https://github.com/CatherineFramework)
-    Project: Catherine
+    Project: Catherine (https://github.com/CatherineFramework)
+    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
     License: BSD 2-Clause
 */
 
@@ -162,10 +162,9 @@ pub fn init(boot_msg: &str) {
 
             "version" => {
                 println!("\nCatherine Framework v{}", VERSION);
-                println!("Author: Hifumi (https://github.com/Hifumi1337)\n");
-                println!("Support the project!");
-                println!("GitHub Sponsors: https://github.com/sponsors/Hifumi1337");
-                println!("Patreon: https://www.patreon.com/hifumi1337lol\n");
+                println!("Author: Hifumi (https://github.com/azazelm3dj3d)");
+                println!("GitHub Sponsors: https://github.com/sponsors/azazelm3dj3d");
+                println!("Patreon: https://www.patreon.com/azazelm3dj3d\n");
             },
 
             "help" => {

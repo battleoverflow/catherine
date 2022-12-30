@@ -2,7 +2,7 @@
 
 All contributions are welcome, but will only be accepted if the following requirements are met.
 
-1. A new branch must be created from the `main` or `master` branch. This can achieved using git:
+1. A new branch must be created from the `main` or `master` branch. This can be achieved using git:
 
 ```bash
 git checkout -b BRANCH_NAME

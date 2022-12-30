@@ -4,4 +4,4 @@
     License: BSD 2-Clause
 */
 
-pub mod data;
+pub mod rust;

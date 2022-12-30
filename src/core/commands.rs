@@ -1,6 +1,6 @@
 /*
-    Owner: Catherine Framework (https://github.com/CatherineFramework)
-    Project: Catherine
+    Project: Catherine (https://github.com/CatherineFramework)
+    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
     License: BSD 2-Clause
 */
 
@@ -36,7 +36,7 @@ use super::{
 };
 
 use crate::{
-    modules::hex::hex,
+    modules::data::hex::rust::rust_hex_dump::collect_hex,
     core::utils::{git_downloader, pretty_output}
 };
 
@@ -244,7 +244,7 @@ pub fn set_module() {
                     thread::sleep(time::Duration::from_secs(1));
                     set_current_dir(reset_dir_buf).expect("Unable to set directory");
 
-                    hex("get_data_dump", &set_hex_dump_file);
+                    collect_hex("get_data_dump", &set_hex_dump_file);
                 } else if choose_your_hex_method == "c" {
                     let set_hex_dump_file = catherine_shell(NAME, VERSION, "set_module/hex/set_file (ex: /path/to/main.exe)".blue());
                     let module_activating: ColoredString = "Activating Hex Module...\n".green();
@@ -252,7 +252,7 @@ pub fn set_module() {
                     println!("{}", module_activating);
                     thread::sleep(time::Duration::from_secs(1));
                     
-                    hex("access_c_lib", &set_hex_dump_file);
+                    collect_hex("access_c_lib", &set_hex_dump_file);
 
                     match var("HOME") {
                         Ok(value) => {

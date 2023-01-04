@@ -48,11 +48,11 @@ extern crate ipconfig;
 pub(crate) static NAME: &str = "Catherine";
 pub(crate) static VERSION: &str = "0.3.50";
 
-pub(crate) static NETSCAN_PATH: &str = "modules/net/netscan/dist/netscan";
-pub(crate) static LINK_PARSER_PATH: &str = "modules/web/parsers/dist/links";
-pub(crate) static MERCY_EXT_PATH: &str = "modules/mercy/dist/mercy_ext";
-pub(crate) static REDIS_ANALYSIS_PATH: &str = "modules/db/redis/dist/redis_analysis";
-pub(crate) static WIN_EXE_DUMP_PATH: &str = "modules/data/exe/dist/exec_dump";
+pub(crate) static NETSCAN_PATH: &str = "src/modules/net/netscan/dist/netscan";
+pub(crate) static LINK_PARSER_PATH: &str = "src/modules/web/parsers/dist/links";
+pub(crate) static MERCY_EXT_PATH: &str = "src/modules/mercy/dist/mercy_ext";
+pub(crate) static REDIS_ANALYSIS_PATH: &str = "src/modules/db/redis/dist/redis_analysis";
+pub(crate) static WIN_EXE_DUMP_PATH: &str = "src/modules/data/exe/dist/exec_dump";
 
 pub fn init(boot_msg: &str) {
 

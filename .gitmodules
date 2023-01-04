@@ -1,4 +1,4 @@
-[submodule "src/modules"]
-	path = src/modules
+[submodule "modules"]
+	path = modules
 	url = https://github.com/CatherineFramework/modules.git
-	branch = build
+	branch = main

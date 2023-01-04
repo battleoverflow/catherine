@@ -46,13 +46,13 @@ use mercy::{
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.3.48";
+pub(crate) static VERSION: &str = "0.3.50";
 
-pub(crate) static NETSCAN_PATH: &str = ".catherine/modules/net/netscan/dist/netscan";
-pub(crate) static PARSER_PATH: &str = ".catherine/modules/web/web_parser/dist/parser";
-pub(crate) static REDIS_ANALYSIS_PATH: &str = ".catherine/modules/db_analysis/redis/dist/redis_db";
-pub(crate) static EXE_PATH: &str = ".catherine/modules/data/exe/dist/exe_dump";
-pub(crate) static MERCY_EXT_PATH: &str = ".catherine/modules/mercy/dist/mercy_ext";
+pub(crate) static NETSCAN_PATH: &str = "modules/net/netscan/dist/netscan";
+pub(crate) static LINK_PARSER_PATH: &str = "modules/web/parsers/dist/links";
+pub(crate) static MERCY_EXT_PATH: &str = "modules/mercy/dist/mercy_ext";
+pub(crate) static REDIS_ANALYSIS_PATH: &str = "modules/db/redis/dist/redis_analysis";
+pub(crate) static WIN_EXE_DUMP_PATH: &str = "modules/data/exe/dist/exec_dump";
 
 pub fn init(boot_msg: &str) {
 
@@ -156,8 +156,7 @@ pub fn init(boot_msg: &str) {
             },
 
             "sys_info" => {
-                println!("{}", mercy_extra("system_info", "all"));
-                println!("Internal IP Address: {}", mercy_extra("internal_ip", ""));
+                println!("{}Internal IP Address: {}\n", mercy_extra("system_info", "all"), mercy_extra("internal_ip", ""));
             },
 
             "version" => {
@@ -276,7 +275,7 @@ pub fn shutdown(shutdown_msg: &str) {
 
     Command::new("chmod")
             .arg("-x")
-            .args([NETSCAN_PATH, PARSER_PATH, REDIS_ANALYSIS_PATH, EXE_PATH, MERCY_EXT_PATH])
+            .args([NETSCAN_PATH, LINK_PARSER_PATH, REDIS_ANALYSIS_PATH, WIN_EXE_DUMP_PATH, MERCY_EXT_PATH])
             .output()
             .expect("Unable process module executable loop");
 

@@ -13,9 +13,8 @@ use std::{
     sync::{
         mpsc, Arc, Mutex,
     },
-    env::{
-        self, var, set_current_dir
-    }, fs, thread, time
+    env::{ self },
+    fs, thread, time
 };
 
 use colored::Colorize;
@@ -322,11 +321,11 @@ pub fn pretty_output(input: &str, output: &str, left_col: &str, right_col: &str)
 }
 
 // Sets the path to the $HOME directory
-pub fn set_home() {
-    let home_env = "HOME";
+// pub fn set_home() {
+//     let home_env = "HOME";
     
-    match var(home_env) {
-        Ok(value) => set_current_dir(value).expect("Unable to set directory"),
-        Err(err) => println!("Unable to interpret environment variable. Is your $HOME variable set?\n {}", err),
-    }
-}
+//     match var(home_env) {
+//         Ok(value) => set_current_dir(value).expect("Unable to set directory"),
+//         Err(err) => println!("Unable to interpret environment variable. Is your $HOME variable set?\n {}", err),
+//     }
+// }

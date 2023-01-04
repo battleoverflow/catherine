@@ -1,0 +1,7 @@
+# Python
+*.spec
+*.pyc
+build/
+
+# Go
+build/

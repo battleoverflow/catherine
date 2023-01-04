@@ -30,7 +30,7 @@ use super::{
 };
 
 use crate::{
-    modules::data::hex::rust::rust_hex_dump::collect_hex,
+    modules::rust_hex_dump::collect_hex,
     core::utils::pretty_output
 };
 

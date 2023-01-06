@@ -46,13 +46,13 @@ use mercy::{
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.3.50";
+pub(crate) static VERSION: &str = "0.3.51";
 
-pub(crate) static NETSCAN_PATH: &str = "modules/net/netscan/dist/netscan";
-pub(crate) static LINK_PARSER_PATH: &str = "modules/web/parsers/dist/links";
-pub(crate) static MERCY_EXT_PATH: &str = "modules/mercy/dist/mercy_ext";
-pub(crate) static REDIS_ANALYSIS_PATH: &str = "modules/db/redis/dist/redis_analysis";
-pub(crate) static WIN_EXE_DUMP_PATH: &str = "modules/data/exe/dist/exec_dump";
+pub(crate) static NETSCAN_PATH: &str = "/opt/catherine/modules/net/netscan/dist/netscan";
+pub(crate) static LINK_PARSER_PATH: &str = "/opt/catherine/modules/web/parsers/dist/links";
+pub(crate) static MERCY_EXT_PATH: &str = "/opt/catherine/modules/mercy/dist/mercy_ext";
+pub(crate) static REDIS_ANALYSIS_PATH: &str = "/opt/catherine/modules/db/redis/dist/redis_analysis";
+pub(crate) static WIN_EXE_DUMP_PATH: &str = "/opt/catherine/modules/data/exe/dist/exec_dump";
 
 pub fn init(boot_msg: &str) {
 
@@ -161,7 +161,7 @@ pub fn init(boot_msg: &str) {
 
             "version" => {
                 println!("\nCatherine Framework v{}", VERSION);
-                println!("Author: Hifumi (https://github.com/azazelm3dj3d)");
+                println!("Author: azazelm3dj3d (https://github.com/azazelm3dj3d)");
                 println!("GitHub Sponsors: https://github.com/sponsors/azazelm3dj3d");
                 println!("Patreon: https://www.patreon.com/azazelm3dj3d\n");
             },

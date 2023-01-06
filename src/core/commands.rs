@@ -71,7 +71,7 @@ pub fn start_server(addr: &str) {
 pub fn view_modules() {
     
     // JSON file
-    let json_file: &str = "modules/modules.json"; // Local
+    let json_file: &str = "/opt/catherine/modules/modules.json"; // Local
 
     let json_parse = {
         // Load the JSON file and convert to an easier to read format
@@ -226,7 +226,7 @@ pub fn set_module() {
 
         "help" => {
             // JSON file
-            let json_file = "modules/modules.json"; // Local
+            let json_file = "/opt/catherine/modules/modules.json"; // Local
 
             let json_parse = {
                 // Load the JSON file and convert to an easier to read format

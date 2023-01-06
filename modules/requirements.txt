@@ -1,8 +1,0 @@
-requests
-bs4
-colorama
-redis
-prettytable
-cryptography
-pyjwt
-pefile

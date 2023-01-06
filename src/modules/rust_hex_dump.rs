@@ -23,7 +23,7 @@ fn access_c_lib(convert_file: &str) {
     
             if env::consts::OS == "linux" {
                 // Sets the shared object
-                let lib = { Library::new("modules/data/hex/c/dist/hex.so").unwrap() };
+                let lib = { Library::new("/opt/catherine/modules/data/hex/c/dist/hex.so").unwrap() };
                 
                 // Grabs the C function we need to call
                 let call_c_lib: Symbol<unsafe extern fn(filename: *const c_char) -> *const c_char> = lib.get("collect_hex\0".as_bytes()).unwrap();

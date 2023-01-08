@@ -291,14 +291,14 @@ pub fn search_exploit() {
 }
 
 // Special Windows modules created internally to handle certain functions
-pub fn set_windows_module() {
+pub fn win_adapter_dump() {
     print!("\ndawn: Dump Windows adapter information\n");
 
-    let choose_module = catherine_shell(NAME, VERSION, "set_windows_module".blue());
+    let choose_module = catherine_shell(NAME, VERSION, "win_adapter_dump".blue());
     let choose_module_str: &str = &choose_module;
     
     match choose_module_str {
-        "dawn" | "Dawn" => {
+        "win_adapter_dump" | "Win_Adapter_Dump" => {
             #[cfg(target_os = "windows")]
             if env::consts::OS == "windows" {
                 let mut file = File::create("adapter.log").expect("create failed");
@@ -332,13 +332,13 @@ pub fn set_windows_module() {
 pub fn help_menu() {
 
     println!("\n=== General ===");
-    pretty_output("start_server\nscan_ports\nsearch_exploit\nset_decode\nsys_info\n", "Start a Rust server\nScan for open local ports\nSearch ExploitDB for an available exploit to review\nDecode an encoded message using one of our provided methods\nPrint local system information to stdout", "Command", "Description");
+    pretty_output("start_server\nscan_ports\nsearch_exploit\nset_decode\nsys_info\ndefang\nwhois\nmal_query\n", "Start a Rust server\nScan for open local ports\nSearch ExploitDB for an available exploit to review\nDecode an encoded message using one of our provided methods\nPrint local system information to stdout\nDefang a URL or IP address (prints to stdout)\nRun a domain registrar search against the WHOIS API\nRun a domain name search to validate if it's malicious (InQuest API)", "Command", "Description");
 
     println!("\n=== Module ===");
-    pretty_output("set_module\nview_modules\nset_windows_module", "Set one of Catherine's modules\nCurrently installed modules\nAllows you to use a module created for Windows or data generated from Windows", "Command", "Description");
+    pretty_output("set_module\nview_modules", "Set one of Catherine's modules\nCurrently installed modules", "Command", "Description");
 
     println!("\n=== Modules List ===");
-    pretty_output("netscan\nparser\nhex\ndb_analysis\nexec_dump", "Collects public network information about a host\nParses web content, extracting external and internal links\nExports a custom hexadecimal dump for most file types (.exe, .toml, .c, etc.)\nTerminal-based database exploration and monitoring\nMulti-format parser built to extract various data points from executables, object binaries, DLLs and more (32-bit & 64-bit)", "Module", "Description");
+    pretty_output("netscan\nparser\nhex\ndb_analysis\nexec_dump\nwin_adapter_dump", "Collects public network information about a host\nParses web content, extracting external and internal links\nExports a custom hexadecimal dump for most file types (.exe, .toml, .c, etc.)\nTerminal-based database exploration and monitoring\nMulti-format parser built to extract various data points from executables, object binaries, DLLs and more (32-bit & 64-bit)\nDumps high-level adapter information from a Windows device", "Module", "Description");
 
     println!("\n=== Help ===");
     pretty_output("help\nversion\nexit", "Help menu\nVersion info for Catherine framework\nExit Catherine framework", "Command", "Description");

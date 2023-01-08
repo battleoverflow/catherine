@@ -29,7 +29,7 @@ use crate::core::{
         scan_ports_nmap,
         set_module,
         search_exploit,
-        set_windows_module,
+        win_adapter_dump,
         help_menu
     },
 
@@ -39,14 +39,15 @@ use crate::core::{
 
 use mercy::{
     mercy_decode,
-    mercy_extra
+    mercy_extra,
+    mercy_malicious, // status, url
 };
 
 #[cfg(target_os = "windows")]
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.3.51";
+pub(crate) static VERSION: &str = "0.3.52";
 
 pub(crate) static NETSCAN_PATH: &str = "/opt/catherine/modules/net/netscan/dist/netscan";
 pub(crate) static LINK_PARSER_PATH: &str = "/opt/catherine/modules/web/parsers/dist/links";
@@ -151,12 +152,35 @@ pub fn init(boot_msg: &str) {
                 set_module();
             },
 
-            "set_windows_module" => {
-                set_windows_module();
+            // Needs testing
+            "win_adapter_dump" => {
+                win_adapter_dump();
             },
 
             "sys_info" => {
                 println!("{}Internal IP Address: {}\n", mercy_extra("system_info", "all"), mercy_extra("internal_ip", ""));
+            },
+
+            "defang" => {
+                let defang_url = catherine_shell(NAME, VERSION, "defang/url".blue());
+                let set_url: &str = &defang_url;
+
+                println!("{}", mercy_extra("defang", set_url));
+            },
+
+            "whois" => {
+                let whois_url = catherine_shell(NAME, VERSION, "whois/url".blue());
+                let set_url: &str = &whois_url;
+
+                println!("{}", mercy_extra("whois", set_url));
+            },
+
+            "mal_query" => {
+                let mal_url = catherine_shell(NAME, VERSION, "mal_query/url".blue());
+                let set_url: &str = &mal_url;
+
+                println!("Domain: {}", set_url);
+                println!("Status: {}", mercy_malicious("status", set_url));
             },
 
             "version" => {

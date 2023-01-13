@@ -243,7 +243,7 @@ pub fn db_search(exploit_info: String) {
                         if let _unable_to_locate = err.kind() {
                             
                             // Checks if ExploitDB already exists
-                            if existence("exploitdb") != true {
+                            if !existence("exploitdb") {
                                 println!("\nYou're missing ExploitDB/Searchsploit. Would you like to download it now? (this could take awhile)\n");
                                 
                                 let download_db = catherine_shell("Catherine", VERSION, "search_exploit/db_search/download_db".red());

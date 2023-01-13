@@ -11,7 +11,7 @@ use std::{
         Stdio
     },
     path::Path,
-    env, thread, time
+    env, thread, time, fs
 };
 
 use chrono::{
@@ -33,7 +33,11 @@ use crate::core::{
         help_menu
     },
 
-    utils::pretty_output,
+    utils::{
+        pretty_output,
+        git_downloader,
+        existence
+    },
     x::catherine_shell
 };
 
@@ -47,7 +51,7 @@ use mercy::{
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.3.52";
+pub(crate) static VERSION: &str = "0.3.53";
 
 pub(crate) static NETSCAN_PATH: &str = "/opt/catherine/modules/net/netscan/dist/netscan";
 pub(crate) static LINK_PARSER_PATH: &str = "/opt/catherine/modules/web/parsers/dist/links";
@@ -190,6 +194,51 @@ pub fn init(boot_msg: &str) {
                 println!("Patreon: https://www.patreon.com/azazelm3dj3d\n");
             },
 
+            // Installs custom modules
+            "install" => {
+                let warning_msg = format!("[WARNING]").red();
+                println!("{} Requires sudo privileges", warning_msg);
+                
+                let mut is_sudo = false;
+
+                let sudo_check = catherine_shell(NAME, VERSION, "are_you_running_sudo? (y/n)".blue());
+                let set_sudo_status: &str = &sudo_check;
+
+                if set_sudo_status == "y" || set_sudo_status == "yes" {
+                    is_sudo = true;
+                } else {
+                    let warning_msg = format!("[WARNING]").red();
+                    println!("{} Requires sudo privileges", warning_msg);
+                }
+
+                if is_sudo {
+
+                    if !existence("/opt/catherine") {
+                        fs::create_dir("/opt/catherine").expect("Unable to create file path /opt/catherine. This is normally due to a permissions error.");
+                    }
+    
+                    if existence("/opt/catherine") {
+                        let new_dir = "/opt/catherine";
+                        let set_dir = Path::new(new_dir);
+    
+                        if let Err(err) = env::set_current_dir(&set_dir) {
+                            println!("{}", err);
+                        }
+    
+                        // Downloads Catherine modules from GitHub
+                        git_downloader("https://github.com/CatherineFramework/modules.git");
+    
+                        if existence("/opt/catherine/modules") {
+                            println!("\nInstallation complete! Modules can be found here: /opt/catherine/modules\n");
+    
+                            if let Err(err) = env::set_current_dir(&set_dir) {
+                                println!("{}", err);
+                            }
+                        }
+                    }
+                }
+            },
+
             "help" => {
                 help_menu();
             },
@@ -219,10 +268,10 @@ pub fn init(boot_msg: &str) {
             _ => {
                 // Temporarily putting in an OS check
                 // Only the whoami command works on Windows
-                if env::consts::OS == "linux" || user_input == "whoami" {
-                    unknown_command(user_input);
-                } else {
+                if env::consts::OS == "windows" || user_input == "whoami" {
                     println!("Unable to process command");
+                } else {
+                    unknown_command(user_input);
                 }
             }
         }

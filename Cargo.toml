@@ -1,7 +1,7 @@
 [package]
 name = "catherine"
 description = "Catherine is a blue team security framework created to make retrieving data, decoding data, and overall defense operations easier"
-version = "0.3.52"
+version = "0.3.53"
 authors = ["azazelm3dj3d"]
 license = "BSD-2-Clause"
 categories = ["cryptography"]

@@ -23,5 +23,4 @@ Install via GitHub releases (with modules):
 curl https://raw.githubusercontent.com/CatherineFramework/Catherine/catherine_install | sudo sh
 ```
 
-## Final note
-Catherine just entered a production (stable) state, so the documentation is currently being updated to match these new changes. For now, you can get started by installing via `Cargo` and viewing the help menu within the Catherine shell. If a bug or issue is found, please report it [here](https://github.com/CatherineFramework/Catherine/issues).
+If a bug or issue is found, please report it [here](https://github.com/CatherineFramework/Catherine/issues).

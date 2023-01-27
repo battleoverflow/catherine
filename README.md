@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="assets/catherine_icon.png" width="50%" />
+    <img src="https://raw.githubusercontent.com/CatherineFramework/Catherine/main/assets/catherine_icon.png" width="40%" />
 </div>
 
 <h1 align="center">

@@ -51,7 +51,7 @@ use mercy::{
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.3.54";
+pub(crate) static VERSION: &str = "0.4.0";
 
 pub(crate) static NETSCAN_PATH: &str = "/opt/catherine/modules/net/netscan/dist/netscan";
 pub(crate) static LINK_PARSER_PATH: &str = "/opt/catherine/modules/web/parsers/dist/links";

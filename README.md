@@ -20,7 +20,10 @@ cargo install catherine
 
 Install via GitHub releases (with modules):
 ```bash
-curl https://raw.githubusercontent.com/CatherineFramework/Catherine/catherine_install | sudo sh
+curl https://raw.githubusercontent.com/CatherineFramework/Catherine/catherine_install && chmod +x catherine_install
+```
+```bash
+./catherine_install
 ```
 
 If a bug or issue is found, please report it [here](https://github.com/CatherineFramework/Catherine/issues).

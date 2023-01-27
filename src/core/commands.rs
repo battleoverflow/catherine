@@ -1,10 +1,7 @@
 /*
-    CyberSuki (https://github.com/cybersuki)
-    File: src/core/commands.rs
-
-    Author(s): {
-        Hifumi1337 (https://github.com/Hifumi1337)
-    }
+    Project: Catherine (https://github.com/CatherineFramework)
+    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    License: BSD 2-Clause
 */
 
 #[allow(unused_imports)]
@@ -14,12 +11,8 @@ use std::{
     fs::File,
     path::Path,
     io::Write,
-    env::{
-        self,
-        set_current_dir,
-        current_dir,
-        var 
-    }, thread, time
+    env::{ self, var },
+    thread, time
 };
 
 use colored::{ Colorize, ColoredString };
@@ -31,25 +24,23 @@ use super::{
         connection_handler,
         find_open_ports,
         nmap_scanner,
-        existence,
         db_search,
-        set_home,
         ThreadPool
     }
 };
 
 use crate::{
-    modules::hex::hex,
-    core::utils::{git_downloader, pretty_output}
+    modules::rust_hex_dump::collect_hex,
+    core::utils::pretty_output
 };
 
 use crate::catherine::{
     NAME,
     VERSION,
     NETSCAN_PATH,
-    PARSER_PATH,
+    LINK_PARSER_PATH,
     REDIS_ANALYSIS_PATH,
-    EXE_PATH,
+    WIN_EXE_DUMP_PATH,
     MERCY_EXT_PATH
 };
 
@@ -78,328 +69,185 @@ pub fn start_server(addr: &str) {
 }
 
 pub fn view_modules() {
-    let reset_dir_buf = current_dir().expect("Unable to get directory");
-    set_home();
-
-    // Checks if the modules directory exists
-    if existence(".catherine/catherine-modules") != true {
-        println!("Missing modules!\n");
-        println!("Would you like to download Catherine's external modules now (y/n)? ");
-        
-        let dl_modules = catherine_shell(NAME, VERSION, "dl_modules".blue());
-
-        if dl_modules == "yes" || dl_modules == "y" {
-            git_downloader("https://github.com/cybersuki/catherine-modules");
-
-            Command::new("rm")
-                    .arg("-r")
-                    .arg(".catherine")
-                    .output()
-                    .expect("Unable to process request");
-
-            Command::new("mkdir")
-                    .arg(".catherine")
-                    .output()
-                    .expect("Unable to process request");
-
-            Command::new("mv")
-                    .arg("catherine-modules")
-                    .arg(".catherine")
-                    .output()
-                    .expect("Unable to process request");
-        
-        } else {
-            println!("Modules not installed");
-        }
-    } else {
-        // JSON file
-        let json_file: &str = ".catherine/catherine-modules/modules.json"; // Local
     
-        let json_parse = {
-            // Load the JSON file and convert to an easier to read format
-            let json_convert = std::fs::read_to_string(&json_file).expect("Unable to locate file");
-            serde_json::from_str::<Value>(&json_convert).unwrap()
-        };
-    
-        // Number of elements in modules.json
-        let modules_len = json_parse["ModulesList"].as_array().unwrap().len();
-    
-        for index in 0..modules_len {
-            // Displays parsed JSON
-            println!("\nID: {}", &json_parse["ModulesList"][index]["id"]);
-            println!("Name: {}", &json_parse["ModulesList"][index]["name"]);
-            println!("Description: {}", &json_parse["ModulesList"][index]["description"]);
-            println!("Version: {}\n", &json_parse["ModulesList"][index]["version"]);
-        }
+    // JSON file
+    let json_file: &str = "/opt/catherine/modules/modules.json"; // Local
+
+    let json_parse = {
+        // Load the JSON file and convert to an easier to read format
+        let json_convert = std::fs::read_to_string(&json_file).expect("Unable to locate file");
+        serde_json::from_str::<Value>(&json_convert).unwrap()
+    };
+
+    // Number of elements in modules.json
+    let modules_len = json_parse["ModulesList"].as_array().unwrap().len();
+
+    for index in 0..modules_len {
+        // Displays parsed JSON
+        println!("\nID: {}", &json_parse["ModulesList"][index]["id"]);
+        println!("Name: {}", &json_parse["ModulesList"][index]["name"]);
+        println!("Description: {}", &json_parse["ModulesList"][index]["description"]);
+        println!("Version: {}\n", &json_parse["ModulesList"][index]["version"]);
     }
-
-    set_current_dir(reset_dir_buf).expect("Unable to set directory");
 }
 
 pub fn set_module() {
-    let reset_dir_buf = current_dir().expect("Unable to get directory");
-    set_home();
+    let set_module_mode = catherine_shell(NAME, VERSION, "set_module".blue());
+    let set_module_str: &str = &set_module_mode;
 
-    // Checks if the modules directory exists
-    if existence(".catherine/catherine-modules") != true {
-        println!("Missing modules!\n");
-        println!("Would you like to download Catherine's external modules now (y/n)? ");
+    Command::new("chmod")
+            .arg("+x")
+            .args([NETSCAN_PATH, LINK_PARSER_PATH, REDIS_ANALYSIS_PATH, WIN_EXE_DUMP_PATH, MERCY_EXT_PATH])
+            .output()
+            .expect("Unable process module executable loop");
 
-        let dl_modules = catherine_shell(NAME, VERSION, "dl_modules".blue());
+    match set_module_str {
+        "netscan" | "NetScan" | "set_module netscan" => {
+            let set_host = catherine_shell(NAME, VERSION, "set_module/netscan/set_host (ex: google.com)".blue());
+            let module_activating: ColoredString = "Activating NetScan Module...\n".green();
 
-        if dl_modules == "yes" || dl_modules == "y" {
-            git_downloader("https://github.com/cybersuki/catherine-modules");
+            println!("{}", module_activating);
+            thread::sleep(time::Duration::from_secs(1));
 
-            Command::new("rm")
-                    .arg("-r")
-                    .arg(".catherine")
-                    .output()
-                    .expect("Unable to process request");
-
-            Command::new("mkdir")
-                    .arg(".catherine")
-                    .output()
-                    .expect("Unable to process request");
-
-            Command::new("mv")
-                    .arg("catherine-modules")
-                    .arg(".catherine")
-                    .output()
-                    .expect("Unable to process request");
-        
-        } else {
-            println!("Modules not installed");
-        }
-
-        set_current_dir(reset_dir_buf).expect("Unable to set directory");
-    } else {
-        let set_module_mode = catherine_shell(NAME, VERSION, "set_module".blue());
-        let set_module_str: &str = &set_module_mode;
-
-        Command::new("chmod")
-                .arg("+x")
-                .args([NETSCAN_PATH, PARSER_PATH, REDIS_ANALYSIS_PATH, EXE_PATH, MERCY_EXT_PATH])
-                .output()
-                .expect("Unable process module executable loop");
-    
-        match set_module_str {
-            "netscan" | "NetScan" => {
-                let set_host = catherine_shell(NAME, VERSION, "set_module/netscan/set_host (ex: google.com)".blue());
-                let module_activating: ColoredString = "Activating NetScan Module...\n".green();
-    
-                println!("{}", module_activating);
-                thread::sleep(time::Duration::from_secs(1));
-    
-                // Go acts a little funky on WSL for some reason
-                if set_host == "help" {
-                    if env::consts::OS == "linux" {
-                        Command::new(NETSCAN_PATH)
-                                .arg("help")
-                                .status()
-                                .expect("Failed to execute process");
-                    } else {
-                        println!("Unable to run module on this operating system");
-                    }
-                } else {
-                    if env::consts::OS == "linux" {
-                        Command::new(NETSCAN_PATH)
-                                .arg("all")
-                                .arg("--host")
-                                .arg(set_host)
-                                .status()
-                                .expect("Failed to execute process");
-                    } else {
-                        println!("Unable to run module on this operating system");
-                    }
-                }
-
-                set_current_dir(reset_dir_buf).expect("Unable to set directory");
-            },
-    
-            "parser" | "Parser" => {
-                let module_activating: ColoredString = "Activating Web Parser Module...\n".green();
-    
-                println!("{}", module_activating);
-                thread::sleep(time::Duration::from_secs(1));
-    
+            // Go acts a little funky on WSL for some reason
+            if set_host == "help" {
                 if env::consts::OS == "linux" {
-                    Command::new(PARSER_PATH)
+                    Command::new(NETSCAN_PATH)
+                            .arg("help")
                             .status()
                             .expect("Failed to execute process");
                 } else {
                     println!("Unable to run module on this operating system");
                 }
-
-                set_current_dir(reset_dir_buf).expect("Unable to set directory");
-            },
-    
-            "hex" | "Hex" => {
-                print!("\nrust: Runs a custom hex dump using Rust (dumps pretty hex to stdout)\n");
-                print!("c: Runs a custom hex dump using C (dumps hex strings to a file & stdout)\n\n");
-    
-                let choose_your_hex_method = catherine_shell(NAME, VERSION, "set_module/hex/dump_method (ex: c)".blue());
-    
-                if choose_your_hex_method == "rust" {
-                    let set_hex_dump_file = catherine_shell(NAME, VERSION, "set_module/hex/set_file (ex: main.exe)".blue());
-                    let module_activating: ColoredString = "Activating Hex Module...\n".green();
-                    
-                    println!("{}", module_activating);
-                    thread::sleep(time::Duration::from_secs(1));
-                    set_current_dir(reset_dir_buf).expect("Unable to set directory");
-
-                    hex("get_data_dump", &set_hex_dump_file);
-                } else if choose_your_hex_method == "c" {
-                    let set_hex_dump_file = catherine_shell(NAME, VERSION, "set_module/hex/set_file (ex: /path/to/main.exe)".blue());
-                    let module_activating: ColoredString = "Activating Hex Module...\n".green();
-                    
-                    println!("{}", module_activating);
-                    thread::sleep(time::Duration::from_secs(1));
-                    
-                    hex("access_c_lib", &set_hex_dump_file);
-
-                    match var("HOME") {
-                        Ok(value) => {
-                            let hex_file = format!("{}/maniac_c_lib.hex", value);
-
-                            set_current_dir(reset_dir_buf).expect("Unable to set directory");
-
-                            // Moves maniac_c_lib.hex to current directory (location of the catherine executable on the user's system)
-                            if Path::new(&hex_file).exists() {
-                                Command::new("mv")
-                                        .arg(hex_file)
-                                        .arg(".")
-                                        .spawn()
-                                        .expect("Unable to process request");
-
-                                println!("Data dumped to maniac_c_lib.hex");
-                            }
-                        },
-                        Err(err) => println!("Unable to interpret environment variable. Is your $HOME variable set?\n {}", err),
-                    }
-                }
-            },
-    
-            "db_analysis" | "DB_Analysis" => {
-                let module_activating: ColoredString = "Activating Database Analysis Module...\n".green();
-    
-                println!("{}", module_activating);
-                thread::sleep(time::Duration::from_secs(1));
-
-                println!("\nSupported databases:");
-                println!("[0] redis\n");
-
-                let set_db = catherine_shell(NAME, VERSION, "set_module/db_analysis/set_db".blue());
-
-                if set_db == "redis" || set_db == "Redis" || set_db == "0" {
-                    if env::consts::OS == "linux" {
-                        Command::new(REDIS_ANALYSIS_PATH)
-                                .status()
-                                .expect("Failed to execute process");
-                    } else {
-                        println!("Unable to run module on this operating system");
-                    }
+            } else {
+                if env::consts::OS == "linux" {
+                    Command::new(NETSCAN_PATH)
+                            .arg("all")
+                            .arg("--host")
+                            .arg(set_host)
+                            .status()
+                            .expect("Failed to execute process");
                 } else {
-                    println!("Database is not supported yet");
+                    println!("Unable to run module on this operating system");
                 }
+            }
+        },
 
-                set_current_dir(reset_dir_buf).expect("Unable to set directory");
-            },
+        "parser" | "Parser" | "set_module parser" => {
+            let set_host = catherine_shell(NAME, VERSION, "set_module/parser/links/set_host (ex: https://google.com)".blue());
+            let module_activating: ColoredString = "Activating Link Parser Module...\n".green();
 
-            "exe_dump" | "Exe_Dump" => {
-                let module_activating: ColoredString = "Activating Executable Dump Module...\n".green();
-                let note_for_user: ColoredString = "Only Windows exec format are accepted!\n".red();
+            println!("{}", module_activating);
+            thread::sleep(time::Duration::from_secs(1));
+
+            if env::consts::OS == "linux" {
+                Command::new(LINK_PARSER_PATH)
+                        .arg(set_host)
+                        .status()
+                        .expect("Failed to execute process");
+            } else {
+                println!("Unable to run module on this operating system");
+            }
+        },
+
+        "hex" | "Hex" | "set_module hex" => {
+            print!("\nrust: Runs a custom hex dump using Rust (dumps pretty hex to stdout)\n");
+            print!("c: Runs a custom hex dump using C (dumps hex strings to a file & stdout)\n\n");
+
+            let choose_your_hex_method = catherine_shell(NAME, VERSION, "set_module/hex/dump_method (ex: c)".blue());
+
+            if choose_your_hex_method == "rust" {
+                let set_hex_dump_file = catherine_shell(NAME, VERSION, "set_module/hex/set_file (ex: main.exe)".blue());
+                let module_activating: ColoredString = "Activating Hex Module...\n".green();
                 
                 println!("{}", module_activating);
-                println!("NOTE: {}", note_for_user);
                 thread::sleep(time::Duration::from_secs(1));
-    
-                if env::consts::OS == "linux" {
-                    let run_exit: ColoredString = "After entering the location of your file, run the 'dump' command. After that, run the 'exit' command to move the file into your current directory\n".green();
-                    println!("{}", run_exit);
 
-                    Command::new(EXE_PATH)
+                collect_hex("get_data_dump", &set_hex_dump_file);
+            } else if choose_your_hex_method == "c" {
+                let set_hex_dump_file = catherine_shell(NAME, VERSION, "set_module/hex/set_file (ex: /path/to/main.exe)".blue());
+                let module_activating: ColoredString = "Activating Hex Module...\n".green();
+                
+                println!("{}", module_activating);
+                thread::sleep(time::Duration::from_secs(1));
+                
+                collect_hex("access_c_lib", &set_hex_dump_file);
+            }
+        },
+
+        "db_analysis" | "DB_Analysis" | "set_module db_analysis" => {
+            let module_activating: ColoredString = "Activating Database Analysis Module...\n".green();
+
+            println!("{}", module_activating);
+            thread::sleep(time::Duration::from_secs(1));
+
+            println!("\nSupported databases:");
+            println!("[0] redis\n");
+
+            let set_db = catherine_shell(NAME, VERSION, "set_module/db_analysis/set_db".blue());
+
+            if set_db == "redis" || set_db == "Redis" || set_db == "0" {
+                if env::consts::OS == "linux" {
+                    Command::new(REDIS_ANALYSIS_PATH)
                             .status()
                             .expect("Failed to execute process");
-
-                    match var("HOME") {
-                        Ok(value) => {
-                            let header_file = format!("{}/header_dump.log", value);
-
-                            set_current_dir(reset_dir_buf).expect("Unable to set directory");
-
-                            // Moves header_dump.log to current directory (location of the catherine executable on the user's system)
-                            if Path::new(&header_file).exists() {
-                                Command::new("mv")
-                                        .arg(header_file)
-                                        .arg(".")
-                                        .spawn()
-                                        .expect("Unable to process request");
-
-                                println!("Data dumped to header_dump.log");
-                            }
-                        },
-                        Err(err) => println!("Unable to interpret environment variable. Is your $HOME variable set?\n {}", err),
-                    }
                 } else {
                     println!("Unable to run module on this operating system");
                 }
-            },
-    
-            "list" | "view" => {
-                view_modules();
-            },
-    
-            "" => { },
-
-            "update" => {
-                println!("Updating Catherine...");
-
-                git_downloader("https://github.com/cybersuki/catherine-modules");
-
-                Command::new("rm")
-                        .arg("-r")
-                        .arg(".catherine")
-                        .output()
-                        .expect("Unable to process request");
-
-                Command::new("mkdir")
-                        .arg(".catherine")
-                        .output()
-                        .expect("Unable to process request");
-
-                Command::new("mv")
-                        .arg("catherine-modules")
-                        .arg(".catherine")
-                        .output()
-                        .expect("Unable to process request");
-            },
-    
-            "help" => {
-                // JSON file
-                let json_file = ".catherine/catherine-modules/modules.json"; // Local
-    
-                let json_parse = {
-                    // Load the JSON file and convert to an easier to read format
-                    let json_convert = std::fs::read_to_string(&json_file).expect("Unable to locate file");
-                    serde_json::from_str::<Value>(&json_convert).unwrap()
-                };
-    
-                // Number of elements in modules.json
-                let modules_len = json_parse["ModulesList"].as_array().unwrap().len();
-    
-                for index in 0..modules_len {
-                    // Displays parsed JSON
-                    println!("\nID: {}", &json_parse["ModulesList"][index]["id"]);
-                    println!("Name: {}", &json_parse["ModulesList"][index]["name"]);
-                    println!("Description: {}", &json_parse["ModulesList"][index]["description"]);
-                    println!("Version: {}\n", &json_parse["ModulesList"][index]["version"]);
-                }
-            },
-    
-            _ => {
-                println!("Unable to find module. Returning to base shell...");
-                set_current_dir(reset_dir_buf).expect("Unable to set directory");
+            } else {
+                println!("Database is not supported yet");
             }
+        },
+
+        "exec_dump" | "Exec_Dump" | "set_module exec_dump" => {
+            let file_loc = catherine_shell(NAME, VERSION, "set_module/exec_dump/file_loc (ex: /path/to/file)".blue());
+            let module_activating: ColoredString = "Activating Exec Dump module...\n".green();
+            let note_for_user: ColoredString = "Only Windows exec format are accepted!\n".red();
+            
+            println!("{}", module_activating);
+            println!("NOTE: {}", note_for_user);
+            thread::sleep(time::Duration::from_secs(1));
+
+            if env::consts::OS == "linux" {
+                Command::new(WIN_EXE_DUMP_PATH)
+                        .arg(file_loc)
+                        .status()
+                        .expect("Failed to execute process");
+            } else {
+                println!("Unable to run module on this operating system");
+            }
+        },
+
+        "list" | "view" => {
+            view_modules();
+        },
+
+        "" => { },
+
+        "help" => {
+            // JSON file
+            let json_file = "/opt/catherine/modules/modules.json"; // Local
+
+            let json_parse = {
+                // Load the JSON file and convert to an easier to read format
+                let json_convert = std::fs::read_to_string(&json_file).expect("Unable to locate file");
+                serde_json::from_str::<Value>(&json_convert).unwrap()
+            };
+
+            // Number of elements in modules.json
+            let modules_len = json_parse["ModulesList"].as_array().unwrap().len();
+
+            for index in 0..modules_len {
+                // Displays parsed JSON
+                println!("\nID: {}", &json_parse["ModulesList"][index]["id"]);
+                println!("Name: {}", &json_parse["ModulesList"][index]["name"]);
+                println!("Description: {}", &json_parse["ModulesList"][index]["description"]);
+                println!("Version: {}\n", &json_parse["ModulesList"][index]["version"]);
+            }
+        },
+
+        _ => {
+            println!("Unable to find module. Returning to base shell...");
         }
     }
 }
@@ -443,14 +291,14 @@ pub fn search_exploit() {
 }
 
 // Special Windows modules created internally to handle certain functions
-pub fn set_windows_module() {
+pub fn win_adapter_dump() {
     print!("\ndawn: Dump Windows adapter information\n");
 
-    let choose_module = catherine_shell(NAME, VERSION, "set_windows_module".blue());
+    let choose_module = catherine_shell(NAME, VERSION, "win_adapter_dump".blue());
     let choose_module_str: &str = &choose_module;
     
     match choose_module_str {
-        "dawn" | "Dawn" => {
+        "win_adapter_dump" | "Win_Adapter_Dump" => {
             #[cfg(target_os = "windows")]
             if env::consts::OS == "windows" {
                 let mut file = File::create("adapter.log").expect("create failed");
@@ -484,13 +332,13 @@ pub fn set_windows_module() {
 pub fn help_menu() {
 
     println!("\n=== General ===");
-    pretty_output("start_server\nscan_ports\nsearch_exploit\nset_decode\nsys_info\n", "Start a Rust server\nScan for open local ports\nSearch ExploitDB for an available exploit to review\nDecode an encoded message using one of our provided methods\nPrint local system information to stdout", "Command", "Description");
+    pretty_output("start_server\nscan_ports\nsearch_exploit\nset_decode\nsys_info\ndefang\nwhois\nmal_query\n", "Start a Rust server\nScan for open local ports\nSearch ExploitDB for an available exploit to review\nDecode an encoded message using one of our provided methods\nPrint local system information to stdout\nDefang a URL or IP address (prints to stdout)\nRun a domain registrar search against the WHOIS API\nRun a domain name search to validate if it's malicious (InQuest API)", "Command", "Description");
 
     println!("\n=== Module ===");
-    pretty_output("set_module\nview_modules\nset_windows_module", "Set one of Catherine's modules\nCurrently installed modules\nAllows you to use a module created for Windows or data generated from Windows", "Command", "Description");
+    pretty_output("set_module\nview_modules", "Set one of Catherine's modules\nCurrently installed modules", "Command", "Description");
 
     println!("\n=== Modules List ===");
-    pretty_output("netscan\nparser\nhex\ndb_analysis\nexe_dump", "Collects public network information about a host\nParses web content, extracting external and internal links\nExports a custom hexadecimal dump for most file types (.exe, .toml, .c, etc.)\nReal-time Redis analysis and monitoring\nMulti-format parser built to extract various data points from executables, object binaries, DLLs and more (32-bit & 64-bit)", "Module", "Description");
+    pretty_output("netscan\nparser\nhex\ndb_analysis\nexec_dump\nwin_adapter_dump", "Collects public network information about a host\nParses web content, extracting external and internal links\nExports a custom hexadecimal dump for most file types (.exe, .toml, .c, etc.)\nTerminal-based database exploration and monitoring\nMulti-format parser built to extract various data points from executables, object binaries, DLLs and more (32-bit & 64-bit)\nDumps high-level adapter information from a Windows device", "Module", "Description");
 
     println!("\n=== Help ===");
     pretty_output("help\nversion\nexit", "Help menu\nVersion info for Catherine framework\nExit Catherine framework", "Command", "Description");

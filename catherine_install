@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Created directory for Catherine
+catherine_dir="/opt/catherine"
+
+# Installs Catherine
+function install_catherine() {
+    mkdir $catherine_dir
+    cargo install catherine
+}
+
+install_catherine
+
+function install_modules() {
+    cd $catherine_dir
+    git clone https://github.com/CatherineFramework/modules.git
+}
+
+install_modules
+
+function installation_complete() {
+    echo "Catherine should now be installed!"
+    echo "You can start the framework by simply running `catherine` in your terminal"
+}
+
+installation_complete

@@ -1,10 +1,7 @@
 /*
-    CyberSuki (https://github.com/cybersuki)
-    File: src/core/x.rs
-
-    Author(s): {
-        Hifumi1337 (https://github.com/Hifumi1337)
-    }
+    Project: Catherine (https://github.com/CatherineFramework)
+    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    License: BSD 2-Clause
 */
 
 use std::io::Write;

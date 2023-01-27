@@ -1,23 +1,23 @@
 [package]
 name = "catherine"
-description = "Catherine is a blue team security framework created to make retrieving data, decoding data, and overall defense operations easier"
-version = "0.3.47"
-authors = ["Hifumi1337"]
+description = "Catherine is a blue team security framework with an extensible module collection, various types of cryptographic processes, hexadecimal dumping and aggregation, malicious domain detection, and real-time database analysis."
+version = "0.4.0"
+authors = ["azazelm3dj3d"]
 license = "BSD-2-Clause"
-categories = ["cryptography"]
-keywords = ["cybersecurity", "blueteam", "framework", "security"]
+categories = ["Cryptography", "Command line utilities", "Encoding"]
+keywords = ["cybersecurity", "blueteam", "framework", "security", "defense"]
 edition = "2021"
-repository = "https://github.com/cybersuki/catherine"
+repository = "https://github.com/CatherineFramework/Catherine"
 
 [dependencies]
-os_type = { git = "https://github.com/Hifumi1337/os_type", branch = "main", version = "2.4.1" }
+os_type = { git = "https://github.com/CatherineFramework/os_type", branch = "main", version = "2.4.1" }
 chrono = "0.4"
 colored = "2"
 serde = "1.0"
 serde_json = "1.0"
 libloading = "0.7"
 prettytable-rs = "0.9.0"
-mercy = "1.1.11"
+mercy = "1.2.17"
 rand = "0.7.2"
 
 [target.'cfg(target_os = "windows")'.dependencies]

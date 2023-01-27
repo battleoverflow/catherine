@@ -1,10 +1,7 @@
 /*
-    CyberSuki (https://github.com/cybersuki)
-    File: src/catherine.rs
-
-    Author(s): {
-        Hifumi1337 (https://github.com/Hifumi1337)
-    }
+    Project: Catherine (https://github.com/CatherineFramework)
+    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    License: BSD 2-Clause
 */
 
 use std::{
@@ -14,7 +11,7 @@ use std::{
         Stdio
     },
     path::Path,
-    env, thread, time
+    env, thread, time, fs
 };
 
 use chrono::{
@@ -32,30 +29,35 @@ use crate::core::{
         scan_ports_nmap,
         set_module,
         search_exploit,
-        set_windows_module,
+        win_adapter_dump,
         help_menu
     },
 
-    utils::pretty_output,
+    utils::{
+        pretty_output,
+        git_downloader,
+        existence
+    },
     x::catherine_shell
 };
 
 use mercy::{
     mercy_decode,
-    mercy_extra
+    mercy_extra,
+    mercy_malicious, // status, url
 };
 
 #[cfg(target_os = "windows")]
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.3.47";
+pub(crate) static VERSION: &str = "0.4.0";
 
-pub(crate) static NETSCAN_PATH: &str = ".catherine/catherine-modules/net/netscan/dist/netscan";
-pub(crate) static PARSER_PATH: &str = ".catherine/catherine-modules/web/web_parser/dist/parser";
-pub(crate) static REDIS_ANALYSIS_PATH: &str = ".catherine/catherine-modules/db_analysis/redis/dist/redis_db";
-pub(crate) static EXE_PATH: &str = ".catherine/catherine-modules/data/exe/dist/exe_dump";
-pub(crate) static MERCY_EXT_PATH: &str = ".catherine/catherine-modules/mercy/dist/mercy_ext";
+pub(crate) static NETSCAN_PATH: &str = "/opt/catherine/modules/net/netscan/dist/netscan";
+pub(crate) static LINK_PARSER_PATH: &str = "/opt/catherine/modules/web/parsers/dist/links";
+pub(crate) static MERCY_EXT_PATH: &str = "/opt/catherine/modules/mercy/dist/mercy_ext";
+pub(crate) static REDIS_ANALYSIS_PATH: &str = "/opt/catherine/modules/db/redis/dist/redis_analysis";
+pub(crate) static WIN_EXE_DUMP_PATH: &str = "/opt/catherine/modules/data/exe/dist/exec_dump";
 
 pub fn init(boot_msg: &str) {
 
@@ -154,21 +156,73 @@ pub fn init(boot_msg: &str) {
                 set_module();
             },
 
-            "set_windows_module" => {
-                set_windows_module();
+            // Needs testing
+            "win_adapter_dump" => {
+                win_adapter_dump();
             },
 
             "sys_info" => {
-                println!("{}", mercy_extra("system_info", "all"));
-                println!("Internal IP Address: {}", mercy_extra("internal_ip", ""));
+                println!("{}Internal IP Address: {}\n", mercy_extra("system_info", "all"), mercy_extra("internal_ip", ""));
+            },
+
+            "defang" => {
+                let defang_url = catherine_shell(NAME, VERSION, "defang/url".blue());
+                let set_url: &str = &defang_url;
+
+                println!("{}", mercy_extra("defang", set_url));
+            },
+
+            "whois" => {
+                let whois_url = catherine_shell(NAME, VERSION, "whois/url".blue());
+                let set_url: &str = &whois_url;
+
+                println!("{}", mercy_extra("whois", set_url));
+            },
+
+            "mal_query" => {
+                let mal_url = catherine_shell(NAME, VERSION, "mal_query/url".blue());
+                let set_url: &str = &mal_url;
+
+                println!("Domain: {}", set_url);
+                println!("Status: {}", mercy_malicious("status", set_url));
             },
 
             "version" => {
                 println!("\nCatherine Framework v{}", VERSION);
-                println!("Author: Hifumi (https://github.com/Hifumi1337)\n");
-                println!("Support the project!");
-                println!("GitHub Sponsors: https://github.com/sponsors/Hifumi1337");
-                println!("Patreon: https://www.patreon.com/cybersuki\n");
+                println!("Author: azazelm3dj3d (https://github.com/azazelm3dj3d)");
+                println!("GitHub Sponsors: https://github.com/sponsors/azazelm3dj3d");
+                println!("Patreon: https://www.patreon.com/azazelm3dj3d\n");
+            },
+
+            // Installs custom modules
+            "install" => {
+                let warning_msg = format!("[WARNING]").red();
+                println!("{} Requires sudo privileges", warning_msg);
+                println!("Command: sudo catherine");
+
+                if !existence("/opt/catherine") {
+                    fs::create_dir("/opt/catherine").expect("Unable to create file path /opt/catherine. This is normally due to a permissions error.");
+                }
+
+                if existence("/opt/catherine") {
+                    let new_dir = "/opt/catherine";
+                    let set_dir = Path::new(new_dir);
+
+                    if let Err(err) = env::set_current_dir(&set_dir) {
+                        println!("{}", err);
+                    }
+
+                    // Downloads Catherine modules from GitHub
+                    git_downloader("https://github.com/CatherineFramework/modules.git");
+
+                    if existence("/opt/catherine/modules") {
+                        println!("\nInstallation complete! Modules can be found here: /opt/catherine/modules\n");
+
+                        if let Err(err) = env::set_current_dir(&set_dir) {
+                            println!("{}", err);
+                        }
+                    }
+                }
             },
 
             "help" => {
@@ -200,10 +254,10 @@ pub fn init(boot_msg: &str) {
             _ => {
                 // Temporarily putting in an OS check
                 // Only the whoami command works on Windows
-                if env::consts::OS == "linux" || user_input == "whoami" {
-                    unknown_command(user_input);
-                } else {
+                if env::consts::OS == "windows" || user_input == "whoami" {
                     println!("Unable to process command");
+                } else {
+                    unknown_command(user_input);
                 }
             }
         }
@@ -280,7 +334,7 @@ pub fn shutdown(shutdown_msg: &str) {
 
     Command::new("chmod")
             .arg("-x")
-            .args([NETSCAN_PATH, PARSER_PATH, REDIS_ANALYSIS_PATH, EXE_PATH, MERCY_EXT_PATH])
+            .args([NETSCAN_PATH, LINK_PARSER_PATH, REDIS_ANALYSIS_PATH, WIN_EXE_DUMP_PATH, MERCY_EXT_PATH])
             .output()
             .expect("Unable process module executable loop");
 

@@ -1,10 +1,7 @@
 /*
-    CyberSuki (https://github.com/cybersuki)
-    File: src/modules/hex.rs
-
-    Author(s): {
-        Hifumi1337 (https://github.com/Hifumi1337)
-    }
+    Project: Catherine (https://github.com/CatherineFramework)
+    Module by: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    License: BSD 2-Clause
 */
 
 use std::{
@@ -26,10 +23,13 @@ fn access_c_lib(convert_file: &str) {
     
             if env::consts::OS == "linux" {
                 // Sets the shared object
-                let lib = { Library::new(".catherine/catherine-modules/data/hex/dist/hex.so").unwrap() };
-                let call_c_lib: Symbol<unsafe extern fn(filename: *const c_char) -> *const c_char> = lib.get("hex\0".as_bytes()).unwrap();
+                let lib = { Library::new("/opt/catherine/modules/data/hex/c/dist/hex.so").unwrap() };
                 
-                call_c_lib(c_to_print.as_ptr()); // Converts the function parameter call to a pointer reference
+                // Grabs the C function we need to call
+                let call_c_lib: Symbol<unsafe extern fn(filename: *const c_char) -> *const c_char> = lib.get("collect_hex\0".as_bytes()).unwrap();
+
+                // Converts the function parameter call to a pointer reference
+                call_c_lib(c_to_print.as_ptr());
             } else {
                 println!("Your operating system is not supported yet");
             }
@@ -39,7 +39,7 @@ fn access_c_lib(convert_file: &str) {
     }
 }
 
-pub fn hex(option: &str, convert_file: &str) {
+pub fn collect_hex(option: &str, convert_file: &str) {
     if option == "get_data_dump" {
         mercy_hex("hex_dump", convert_file);
     } else if option == "access_c_lib" {

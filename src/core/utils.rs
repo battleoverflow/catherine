@@ -1,10 +1,7 @@
 /*
-    CyberSuki (https://github.com/cybersuki)
-    File: src/core/utils.rs
-
-    Author(s): {
-        Hifumi1337 (https://github.com/Hifumi1337)
-    }
+    Project: Catherine (https://github.com/CatherineFramework)
+    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    License: BSD 2-Clause
 */
 
 use std::{
@@ -16,9 +13,8 @@ use std::{
     sync::{
         mpsc, Arc, Mutex,
     },
-    env::{
-        self, var, set_current_dir
-    }, fs, thread, time
+    env::{ self },
+    fs, thread, time
 };
 
 use colored::Colorize;
@@ -247,7 +243,7 @@ pub fn db_search(exploit_info: String) {
                         if let _unable_to_locate = err.kind() {
                             
                             // Checks if ExploitDB already exists
-                            if existence("exploitdb") != true {
+                            if !existence("exploitdb") {
                                 println!("\nYou're missing ExploitDB/Searchsploit. Would you like to download it now? (this could take awhile)\n");
                                 
                                 let download_db = catherine_shell("Catherine", VERSION, "search_exploit/db_search/download_db".red());
@@ -325,11 +321,11 @@ pub fn pretty_output(input: &str, output: &str, left_col: &str, right_col: &str)
 }
 
 // Sets the path to the $HOME directory
-pub fn set_home() {
-    let home_env = "HOME";
+// pub fn set_home() {
+//     let home_env = "HOME";
     
-    match var(home_env) {
-        Ok(value) => set_current_dir(value).expect("Unable to set directory"),
-        Err(err) => println!("Unable to interpret environment variable. Is your $HOME variable set?\n {}", err),
-    }
-}
+//     match var(home_env) {
+//         Ok(value) => set_current_dir(value).expect("Unable to set directory"),
+//         Err(err) => println!("Unable to interpret environment variable. Is your $HOME variable set?\n {}", err),
+//     }
+// }

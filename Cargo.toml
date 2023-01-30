@@ -7,10 +7,10 @@ license = "BSD-2-Clause"
 categories = ["cryptography", "command-line-utilities", "encoding"]
 keywords = ["cybersecurity", "blueteam", "framework", "security", "defense"]
 edition = "2021"
-repository = "https://github.com/CatherineFramework/Catherine"
+repository = "https://github.com/jinxsecurity/catherine"
 
 [dependencies]
-os_type = { git = "https://github.com/CatherineFramework/os_type", branch = "main", version = "2.4.1" }
+os_type = { git = "https://github.com/jinxsecurity/os_type", branch = "main", version = "2.4.1" }
 chrono = "0.4"
 colored = "2"
 serde = "1.0"

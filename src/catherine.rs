@@ -1,6 +1,6 @@
 /*
-    Project: Catherine (https://github.com/CatherineFramework)
-    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    Project: Catherine Framework (https://github.com/jinxsecurity/catherine)
+    Author: Jinx Security (https://github.com/jinxsecurity)
     License: BSD 2-Clause
 */
 
@@ -189,9 +189,7 @@ pub fn init(boot_msg: &str) {
 
             "version" => {
                 println!("\nCatherine Framework v{}", VERSION);
-                println!("Author: azazelm3dj3d (https://github.com/azazelm3dj3d)");
-                println!("GitHub Sponsors: https://github.com/sponsors/azazelm3dj3d");
-                println!("Patreon: https://www.patreon.com/azazelm3dj3d\n");
+                println!("Author: Jinx Security (https://github.com/jinxsecurity)");
             },
 
             // Installs custom modules
@@ -213,7 +211,7 @@ pub fn init(boot_msg: &str) {
                     }
 
                     // Downloads Catherine modules from GitHub
-                    git_downloader("https://github.com/CatherineFramework/modules.git");
+                    git_downloader("https://github.com/jinxsecurity/catherine-modules.git");
 
                     if existence("/opt/catherine/modules") {
                         println!("\nInstallation complete! Modules can be found here: /opt/catherine/modules\n");

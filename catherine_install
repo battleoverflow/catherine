@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Project: Catherine Framework (https://github.com/jinxsecurity/catherine)
+# Author: Jinx Security (https://github.com/jinxsecurity)
+# License: BSD 2-Clause
+
 # Created directory for Catherine
 catherine_dir="/opt/catherine"
 
@@ -13,7 +17,7 @@ install_catherine
 
 function install_modules() {
     cd $catherine_dir
-    git clone https://github.com/CatherineFramework/modules.git
+    git clone https://github.com/jinxsecurity/catherine-modules.git
 }
 
 install_modules

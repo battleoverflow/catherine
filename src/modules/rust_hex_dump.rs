@@ -1,6 +1,6 @@
 /*
-    Project: Catherine (https://github.com/CatherineFramework)
-    Module by: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    Project: Catherine Framework (https://github.com/jinxsecurity/catherine)
+    Author: Jinx Security (https://github.com/jinxsecurity)
     License: BSD 2-Clause
 */
 

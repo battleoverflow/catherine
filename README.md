@@ -18,12 +18,25 @@ Install via Cargo (without modules):
 cargo install catherine
 ```
 
-Install via GitHub releases (with modules):
+Install via Cargo (with modules):
 ```bash
-curl https://raw.githubusercontent.com/jinxsecurity/catherine/catherine_install && chmod +x catherine_install
+curl https://raw.githubusercontent.com/jinxsecurity/catherine/main/catherine_install > catherine_install && chmod +x catherine_install
 ```
 ```bash
 ./catherine_install
+```
+
+### Uninstall
+If you need to uninstall Catherine on your system for any reason or would like to remove the external modules, you can do so with these commands:
+
+Remove Catherine:
+```bash
+cargo uninstall catherine
+```
+
+Remove all Catherine files:
+```bash
+rm -r /opt/catherine
 ```
 
 If a bug or issue is found, please report it [here](https://github.com/jinxsecurity/catherine/issues).

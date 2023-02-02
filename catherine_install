@@ -9,22 +9,45 @@ catherine_dir="/opt/catherine"
 
 # Installs Catherine
 function install_catherine() {
-    mkdir $catherine_dir
-    cargo install catherine
+    if [[ ! -d "$catherine_dir" ]]; then
+        mkdir $catherine_dir
+        echo "[+] Created Catherine cache successfully"
+    fi
+
+    if ! catherine_installed="$(type -p "catherine")" || [[ -z $catherine_installed ]]; then
+        cargo install catherine
+        echo "[+] Catherine installed successfully"
+    fi
 }
 
 install_catherine
 
 function install_modules() {
     cd $catherine_dir
-    git clone https://github.com/jinxsecurity/catherine-modules.git
+
+    if [[ -d "$catherine_dir/modules" ]]; then
+        rm -r "$catherine_dir/modules"
+        git clone https://github.com/jinxsecurity/catherine-modules.git
+        mv "$catherine_dir/catherine-modules" "$catherine_dir/modules"
+        
+        echo "[+] Catherine modules installed successfully"
+    else
+        git clone https://github.com/jinxsecurity/catherine-modules.git
+        mv "$catherine_dir/catherine-modules" "$catherine_dir/modules"
+
+        if [[ -d "$catherine_dir/modules" ]]; then
+            echo "[+] Catherine modules installed successfully"
+        fi
+    fi
 }
 
 install_modules
 
 function installation_complete() {
+    echo ""
     echo "Catherine should now be installed!"
-    echo "You can start the framework by simply running `catherine` in your terminal"
+    echo "You can start the framework by running 'catherine' in your terminal"
+    exit
 }
 
 installation_complete

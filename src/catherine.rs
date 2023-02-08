@@ -1,6 +1,6 @@
 /*
-    Project: Catherine Framework (https://github.com/jinxsecurity/catherine)
-    Author: Jinx Security (https://github.com/jinxsecurity)
+    Project: Catherine Framework (https://github.com/azazelm3dj3d/catherine)
+    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
     License: BSD 2-Clause
 */
 
@@ -51,7 +51,7 @@ use mercy::{
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.4.0";
+pub(crate) static VERSION: &str = "0.4.1";
 
 pub(crate) static NETSCAN_PATH: &str = "/opt/catherine/modules/net/netscan/dist/netscan";
 pub(crate) static LINK_PARSER_PATH: &str = "/opt/catherine/modules/web/parsers/dist/links";
@@ -189,7 +189,7 @@ pub fn init(boot_msg: &str) {
 
             "version" => {
                 println!("\nCatherine Framework v{}", VERSION);
-                println!("Author: Jinx Security (https://github.com/jinxsecurity)");
+                println!("Author: azazelm3dj3d (https://github.com/azazelm3dj3d)");
             },
 
             // Installs custom modules
@@ -211,7 +211,7 @@ pub fn init(boot_msg: &str) {
                     }
 
                     // Downloads Catherine modules from GitHub
-                    git_downloader("https://github.com/jinxsecurity/catherine-modules.git");
+                    git_downloader("https://github.com/azazelm3dj3d/catherine-modules.git");
 
                     if existence("/opt/catherine/modules") {
                         println!("\nInstallation complete! Modules can be found here: /opt/catherine/modules\n");

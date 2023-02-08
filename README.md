@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://raw.githubusercontent.com/jinxsecurity/catherine/main/assets/catherine_icon.png" width="40%" />
+    <img src="https://raw.githubusercontent.com/azazelm3dj3d/catherine/main/assets/catherine_icon.png" width="40%" />
 </div>
 
 <h1 align="center">
@@ -20,7 +20,7 @@ cargo install catherine
 
 Install via Cargo (with modules):
 ```bash
-curl https://raw.githubusercontent.com/jinxsecurity/catherine/main/catherine_install > catherine_install && chmod +x catherine_install
+curl https://raw.githubusercontent.com/azazelm3dj3d/catherine/main/catherine_install > catherine_install && chmod +x catherine_install
 ```
 ```bash
 ./catherine_install
@@ -39,4 +39,4 @@ Remove all Catherine files:
 rm -r /opt/catherine
 ```
 
-If a bug or issue is found, please report it [here](https://github.com/jinxsecurity/catherine/issues).
+If a bug or issue is found, please report it [here](https://github.com/azazelm3dj3d/catherine/issues).

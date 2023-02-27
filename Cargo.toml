@@ -2,15 +2,15 @@
 name = "catherine"
 description = "Catherine is a blue team security framework with an extensible module collection, various types of cryptographic processes, hexadecimal dumping and aggregation, malicious domain detection, and real-time database analysis."
 version = "0.4.1"
-authors = ["azazelm3dj3d"]
+authors = ["Azazel Labs"]
 license = "BSD-2-Clause"
 categories = ["cryptography", "command-line-utilities", "encoding"]
 keywords = ["cybersecurity", "blueteam", "framework", "security", "defense"]
 edition = "2021"
-repository = "https://github.com/azazelm3dj3d/catherine"
+repository = "https://github.com/azazellabs/catherine"
 
 [dependencies]
-os_type = { git = "https://github.com/azazelm3dj3d/os_type", branch = "main", version = "2.4.1" }
+os_type = { git = "https://github.com/azazellabs/os_type", branch = "main", version = "2.6.1" }
 chrono = "0.4"
 colored = "2"
 serde = "1.0"

@@ -1,6 +1,6 @@
 /*
-    Project: Catherine Framework (https://github.com/azazellabs/catherine)
-    Author: Azazel Labs (https://github.com/azazellabs)
+    Project: Catherine Framework (https://github.com/azazelm3dj3d/catherine)
+    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
     License: BSD 2-Clause
 */
 
@@ -189,7 +189,7 @@ pub fn init(boot_msg: &str) {
 
             "version" => {
                 println!("\nCatherine Framework v{}", VERSION);
-                println!("Author: Azazel Labs (https://github.com/azazellabs)");
+                println!("Author: azazelm3dj3d (https://github.com/azazelm3dj3d)");
             },
 
             // Installs custom modules
@@ -211,7 +211,7 @@ pub fn init(boot_msg: &str) {
                     }
 
                     // Downloads Catherine modules from GitHub
-                    git_downloader("https://github.com/azazellabs/catherine-modules.git");
+                    git_downloader("https://github.com/azazelm3dj3d/catherine-modules.git");
 
                     if existence("/opt/catherine/modules") {
                         println!("\nInstallation complete! Modules can be found here: /opt/catherine/modules\n");

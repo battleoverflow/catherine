@@ -6,20 +6,18 @@
     Catherine
 </h1>
 
-<!-- 📚 [Documentation](https://catherine.azazelm3dj3d.com) -->
-
-The Catherine Framework is a general-purpose cybersecurity framework built to aggregate, validate, decode, decrypt, and maintain data. Catherine currently collects information from hexadecimal data dumps, validates malicious domain/IP detection, attempts to crack unknown strings and hashes, handles real-time database analysis, and much more! Thanks to Catherine being built in an easily packaged executable, you can quickly download the tool by running `cargo install catherine` via the `cargo` ecosystem. Catherine can also be quickly built by pulling down the source code from `git` and simply running `cargo build`.
+The Catherine Framework is a general-purpose cybersecurity framework built to aggregate, validate, decode, decrypt, and maintain data. Catherine currently collects information from dumping hexadecimal content from files, validates malicious domain/IP detection, attempts to crack unknown strings and hashes, handles real-time database analysis, and much more. Thanks to Catherine being built in an easily packaged executable, you can quickly download the tool by running `cargo install catherine` via the `Cargo` ecosystem. Catherine can also be quickly compiled by pulling down the source code from `git` and simply running `cargo build`.
 
 Catherine provides a Command Line Interface (CLI) and Graphical User Interface (GUI) built into the executable. This means whether you install from source or `Cargo`, you can choose your method of use.
 
 ## Installation
 
-You can easily install via the `Cargo` CLI utility:
+You can easily install via the `Cargo` CLI:
 ```bash
 cargo install catherine
 ```
 
-If you'd prefer to install from source, you can also do this fairly easily, but it will still require the `Cargo` utility.
+If you'd prefer to install from source, you can also do this fairly easily, but it will still require the `Cargo` CLI.
 
 First, clone the repository using `git`:
 
@@ -48,5 +46,7 @@ If a GUI is more your style, there is a simple version available with the majori
 ```bash
 🦀 Catherine [v0.x.x] (None) ☀️  〉launch
 ```
+
+NOTE: I am still working on making the GUI a little nicer looking, but a basic version is currently available for testing.
 
 If a bug or issue is found, please report it [here](https://github.com/azazelm3dj3d/catherine/issues).

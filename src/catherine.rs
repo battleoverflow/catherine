@@ -44,14 +44,16 @@ use crate::core::{
 use mercy::{
     mercy_decode,
     mercy_extra,
-    mercy_malicious, // status, url
+    mercy_malicious, mercy_experimental // status, url
 };
+
+use crate::ui::controller::launch_gui;
 
 #[cfg(target_os = "windows")]
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.4.1";
+pub(crate) static VERSION: &str = "0.4.2";
 
 pub(crate) static NETSCAN_PATH: &str = "/opt/catherine/modules/net/netscan/dist/netscan";
 pub(crate) static LINK_PARSER_PATH: &str = "/opt/catherine/modules/web/parsers/dist/links";
@@ -161,6 +163,7 @@ pub fn init(boot_msg: &str) {
                 win_adapter_dump();
             },
 
+            // NOTE: Doesn't work on macOS
             "sys_info" => {
                 println!("{}Internal IP Address: {}\n", mercy_extra("system_info", "all"), mercy_extra("internal_ip", ""));
             },
@@ -187,9 +190,43 @@ pub fn init(boot_msg: &str) {
                 println!("Status: {}", mercy_malicious("status", set_url));
             },
 
+            "id" => {
+                let id: String = catherine_shell(NAME, VERSION, "identify/string".blue());
+                let id_str: &str = &id;
+
+                println!("{}", mercy_extra("identify", id_str));
+            },
+
+            "crack_hash" => {
+                let hash: String = catherine_shell(NAME, VERSION, "crack_hash/hash".blue());
+                let hash_str: &str = &hash;
+
+                println!("{}", mercy_extra("crack", hash_str));
+            },
+
+            "domain_gen" => {
+                let domain_name: String = catherine_shell(NAME, VERSION, "domain_gen/domain".blue());
+                let domain_str: &str = &domain_name;
+
+                mercy_experimental("domain_gen", domain_str);
+            },
+
+            // Convert into "extract" command where the user can choose what type of extraction to use, similar to the "decode" commands
+            "extract_zip" => {
+                let zip_name: String = catherine_shell(NAME, VERSION, "extract/zip".blue());
+                let zip_str: &str = &zip_name;
+
+                mercy_experimental("zip", zip_str);
+            },
+
+            // Launches the GUI
+            "launch" => {
+                launch_gui();
+            },
+
             "version" => {
                 println!("\nCatherine Framework v{}", VERSION);
-                println!("Author: azazelm3dj3d (https://github.com/azazelm3dj3d)");
+                println!("Author: azazelm3dj3d (https://github.com/azazelm3dj3d)\n");
             },
 
             // Installs custom modules
@@ -223,7 +260,7 @@ pub fn init(boot_msg: &str) {
                 }
             },
 
-            "help" => {
+            "help" | "h" => {
                 help_menu();
             },
 

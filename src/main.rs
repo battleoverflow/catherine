@@ -9,6 +9,7 @@ use rand::Rng;
 
 mod core;
 mod modules;
+mod ui;
 mod catherine;
 mod meta;
 

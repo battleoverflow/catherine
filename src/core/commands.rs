@@ -332,7 +332,7 @@ pub fn win_adapter_dump() {
 pub fn help_menu() {
 
     println!("\n=== General ===");
-    pretty_output("start_server\nscan_ports\nsearch_exploit\nset_decode\nsys_info\ndefang\nwhois\nmal_query\n", "Start a Rust server\nScan for open local ports\nSearch ExploitDB for an available exploit to review\nDecode an encoded message using one of our provided methods\nPrint local system information to stdout\nDefang a URL or IP address (prints to stdout)\nRun a domain registrar search against the WHOIS API\nRun a domain name search to validate if it's malicious (InQuest API)", "Command", "Description");
+    pretty_output("start_server\nscan_ports\nsearch_exploit\nset_decode\nsys_info\ndefang\nwhois\nmal_query\nid\ncrack_hash\ndomain_gen\nextract_zip\nlaunch\n", "Start a Rust server\nScan for open local ports\nSearch ExploitDB for an available exploit to review\nDecode an encoded message using one of our provided methods\nPrint local system information to stdout\nDefang a URL or IP address (prints to stdout)\nRun a domain registrar search against the WHOIS API\nRun a domain name search to validate if it's malicious (InQuest API)\nAttempt to identify a string's origins\nAttempt to crack an unknown hash in real-time\nGenerate a string for domain squatting or phishing assessments\nExtract zip contents that are not password protected\nLaunch a GUI built with Tauri", "Command", "Description");
 
     println!("\n=== Module ===");
     pretty_output("set_module\nview_modules", "Set one of Catherine's modules\nCurrently installed modules", "Command", "Description");

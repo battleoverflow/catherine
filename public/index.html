@@ -1,0 +1,289 @@
+<!--
+  Project: Catherine Framework (https://github.com/azazelm3dj3d/catherine)
+  Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+  License: BSD 2-Clause
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Catherine Framework</title>
+    </head>
+
+    <body>
+
+        <div class="flex h-screen">
+            <div class="flex flex-col flex-1 w-full overflow-y-auto">
+                <div class="grid pb-10 px-8" style="background: #343434;">
+                    <div class="grid grid-cols-12 gap-6">
+                        <div class="grid grid-cols-12 col-span-12 gap-6 xxl:col-span-9">
+                            <div class="col-span-12 mt-8">
+                                <div class="flex items-center h-10 intro-y justify-center mb-20 mt-5">
+                                    <img src="https://raw.githubusercontent.com/azazelm3dj3d/catherine/main/assets/catherine_icon.png" alt="" class="w-40" />
+                                </div>
+                                <div class="flex items-center h-10 intro-y justify-center m-10">
+                                    <h2 class="text-2xl font-medium truncate text-white">
+                                        Catherine Framework
+                                    </h2>
+                                </div>
+
+                                <!-- Commands -->
+                                
+                                <div class="grid grid-cols-12 gap-6 mt-20">
+                                    <div class="shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y hover:shadow-2xl transition bg-black border-2 border-white text-white">
+                                        <div class="p-5">
+                                            <div class="w-full flex-1">
+                                                <div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8 text-center">
+                                                        Decode
+                                                    </div>
+
+                                                    <div>
+                                                        <div class="mb-5 mt-5">
+                                                            <form>
+                                                                <select
+                                                                name="methodName"
+                                                                id="methodName"
+                                                                class="text-center"
+                                                                style="
+                                                                padding: 0 10px 0 10px;
+                                                                border: 1px solid #fff;
+                                                                border-radius: 3px;
+                                                                background: #000;
+                                                                margin: 0 5px 5px 0;
+                                                                justify-content: center;
+                                                                align-items: center;
+                                                                ">
+                                                                    <option value="base64">Base64</option>
+                                                                    <option value="rot13">Rot13</option>
+                                                                </select>
+                                                            </form>
+                                                        </div>
+
+                                                        <div class="justify-center mt-4">
+                                                            <form>
+                                                                <input type="text"
+                                                                class="peer block min-h-[auto] rounded bg-transparent py-[0.32rem] px-3 border-2 border-white w-full" id="encodedData" name="encodedData" />
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="border-2 border-white mt-5 bg-white text-black hover:border-white hover:bg-black hover:text-white transition text-center">
+                                                        <button onclick="decodeString()">
+                                                            Decode
+                                                        </button>
+                                                    </div>
+
+                                                    <p class="mt-10 text-white text-center" id="res_0"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y hover:shadow-2xl transition bg-black border-2 border-white text-white">
+                                        <div class="p-5">
+                                            <div class="w-full flex-1">
+                                                <div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8 text-center">
+                                                        Dump System Information (Linux only)
+                                                    </div>
+
+                                                    <div class="border-2 border-white mt-5 bg-white text-black hover:border-white hover:bg-black hover:text-white transition text-center">
+                                                        <button onclick="sysInfo()">
+                                                            Dump
+                                                        </button>
+                                                    </div>
+
+                                                    <p class="mt-10 text-white text-center" id="res_1"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y hover:shadow-2xl transition bg-black border-2 border-white text-white">
+                                        <div class="p-5">
+                                            <div class="w-full flex-1">
+                                                <div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8 text-center">
+                                                        Defang
+                                                    </div>
+
+                                                    <div class="justify-center mt-4">
+                                                        <form>
+                                                            <input type="text" class="peer block min-h-[auto] rounded bg-transparent py-[0.32rem] px-3 border-2 border-white w-full" id="defangValue" name="defangValue" />
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                                <div class="border-2 border-white mt-5 bg-white text-black hover:border-white hover:bg-black hover:text-white transition text-center">
+                                                    <button onclick="defangString()">
+                                                        Defang
+                                                    </button>
+                                                </div>
+
+                                                <p class="mt-10 text-white text-center" id="res_2"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y hover:shadow-2xl transition bg-black border-2 border-white text-white">
+                                        <div class="p-5">
+                                            <div class="w-full flex-1">
+                                                <div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8 text-center">
+                                                        WHOIS Lookup
+                                                    </div>
+
+                                                    <div class="justify-center mt-4">
+                                                        <form>
+                                                            <input type="text" class="peer block min-h-[auto] rounded bg-transparent py-[0.32rem] px-3 border-2 border-white w-full" id="whoisUrl" name="whoisUrl" />
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                                <div class="border-2 border-white mt-5 bg-white text-black hover:border-white hover:bg-black hover:text-white transition text-center">
+                                                    <button onclick="whoisLookup()">
+                                                        Search
+                                                    </button>
+                                                </div>
+
+                                                <p class="mt-10 text-white text-center" id="res_3"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y hover:shadow-2xl transition bg-black border-2 border-white text-white">
+                                        <div class="p-5">
+                                            <div class="w-full flex-1">
+                                                <div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8 text-center">
+                                                        Identify String
+                                                    </div>
+
+                                                    <div class="justify-center mt-4">
+                                                        <form>
+                                                            <input type="text" class="peer block min-h-[auto] rounded bg-transparent py-[0.32rem] px-3 border-2 border-white w-full" id="idStr" name="idStr" />
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                                <div class="border-2 border-white mt-5 bg-white text-black hover:border-white hover:bg-black hover:text-white transition text-center">
+                                                    <button onclick="idString()">
+                                                        Identify
+                                                    </button>
+                                                </div>
+
+                                                <p class="mt-10 text-white text-center" id="res_5"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y hover:shadow-2xl transition bg-black border-2 border-white text-white">
+                                        <div class="p-5">
+                                            <div class="w-full flex-1">
+                                                    <div>
+                                                        <div class="mt-3 text-3xl font-bold leading-8 text-center">
+                                                            Crack Hash
+                                                        </div>
+
+                                                        <div class="justify-center mt-4">
+                                                            <form>
+                                                                <input type="text" class="peer block min-h-[auto] rounded bg-transparent py-[0.32rem] px-3 border-2 border-white w-full" id="hashCracker" name="hashCracker" />
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                <div class="border-2 border-white mt-5 bg-white text-black hover:border-white hover:bg-black hover:text-white transition text-center">
+                                                    <button onclick="crackHash()">
+                                                        Crack
+                                                    </button>
+                                                </div>
+
+                                                <p class="mt-10 text-white text-center" id="res_6"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y hover:shadow-2xl transition bg-black border-2 border-white text-white">
+                                        <div class="p-5">
+                                            <div class="w-full flex-1">
+                                                <div>
+                                                    <div class="mt-3 text-3xl font-bold leading-8 text-center">
+                                                        Generate a Domain
+                                                    </div>
+
+                                                    <div class="justify-center mt-4">
+                                                        <form>
+                                                            <input type="text" class="peer block min-h-[auto] rounded bg-transparent py-[0.32rem] px-3 border-2 border-white w-full" id="domainStr" name="domainStr" />
+                                                        </form>
+                                                    </div>
+                                                </div>
+
+                                            <div class="border-2 border-white mt-5 bg-white text-black hover:border-white hover:bg-black hover:text-white transition text-center">
+                                                <button onclick="domainGen()">
+                                                    Generate
+                                                </button>
+                                            </div>
+
+                                            <p class="mt-10 text-white text-center" id="res_7"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y hover:shadow-2xl transition bg-black border-2 border-white text-white">
+                                    <div class="p-5">
+                                        <div class="w-full flex-1">
+                                            <div>
+                                                <div class="mt-3 text-3xl font-bold leading-8 text-center">
+                                                    Extract Zip File(s)
+                                                </div>
+
+                                                <div class="justify-center mt-4">
+                                                    <form>
+                                                        <input type="text" class="peer block min-h-[auto] rounded bg-transparent py-[0.32rem] px-3 border-2 border-white w-full" id="extractZipFile" name="extractZipFile" />
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                            <div class="border-2 border-white mt-5 bg-white text-black hover:border-white hover:bg-black hover:text-white transition text-center">
+                                                <button onclick="zipExtract()">
+                                                    Extract
+                                                </button>
+                                            </div>
+                                            
+                                            <p class="mt-10 text-white text-center" id="res_8"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="shadow-xl rounded-lg col-span-12 sm:col-span-6 xl:col-span-3 intro-y hover:shadow-2xl transition bg-black border-2 border-white text-white">
+                                    <div class="p-5">
+                                        <div class="w-full flex-1">
+                                            <div>
+                                                <div class="mt-3 text-3xl font-bold leading-8 text-center">
+                                                    Exit Catherine
+                                                </div>
+                                            <div class="border-2 border-white mt-5 bg-white text-black hover:border-white hover:bg-black hover:text-white transition text-center">
+                                                <button onclick="exitCatherine()">
+                                                    Exit
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/index.js"></script>
+    </body>
+
+</html>

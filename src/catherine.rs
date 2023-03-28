@@ -211,7 +211,6 @@ pub fn init(boot_msg: &str) {
                 mercy_experimental("domain_gen", domain_str);
             },
 
-            // Convert into "extract" command where the user can choose what type of extraction to use, similar to the "decode" commands
             "extract_zip" => {
                 let zip_name: String = catherine_shell(NAME, VERSION, "extract/zip".blue());
                 let zip_str: &str = &zip_name;

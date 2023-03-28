@@ -1,7 +1,7 @@
 [package]
 name = "catherine"
-description = "Catherine is a blue team security framework with an extensible module collection, various types of cryptographic processes, hexadecimal dumping and aggregation, malicious domain detection, and real-time database analysis."
-version = "0.4.1"
+description = "The Catherine Framework is a general-purpose cybersecurity framework built to aggregate, validate, decode, decrypt, and maintain data."
+version = "0.5.0"
 authors = ["azazelm3dj3d"]
 license = "BSD-2-Clause"
 categories = ["cryptography", "command-line-utilities", "encoding"]
@@ -9,16 +9,24 @@ keywords = ["cybersecurity", "blueteam", "framework", "security", "defense"]
 edition = "2021"
 repository = "https://github.com/azazelm3dj3d/catherine"
 
+[build-dependencies]
+tauri-build = { version = "1.2.1", features = [] }
+
 [dependencies]
-os_type = { git = "https://github.com/azazelm3dj3d/os_type", branch = "main", version = "2.6.1" }
+os_type = "2.6.0"
 chrono = "0.4"
 colored = "2"
 serde = "1.0"
 serde_json = "1.0"
 libloading = "0.7"
-prettytable-rs = "0.9.0"
-mercy = "1.2.17"
+prettytable-rs = "0.10.0"
+mercy = "1.2.22"
 rand = "0.7.2"
+tauri = { version = "1.2.4", features = [] }
 
 [target.'cfg(target_os = "windows")'.dependencies]
 ipconfig = "0.3.0"
+
+[features]
+default = [ "custom-protocol" ]
+custom-protocol = [ "tauri/custom-protocol" ]

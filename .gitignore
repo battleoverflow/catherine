@@ -16,4 +16,6 @@ Cargo.lock
 *.log
 *.spec
 build/
+__MACOSX/
 __pycache__/
+.DS_Store

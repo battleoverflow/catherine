@@ -13,7 +13,7 @@ repository = "https://github.com/azazelm3dj3d/catherine"
 tauri-build = { version = "1.2.1", features = [] }
 
 [dependencies]
-os_type = { git = "https://github.com/azazelm3dj3d/os_type", branch = "main", version = "2.6.1" }
+os_type = "2.6.0"
 chrono = "0.4"
 colored = "2"
 serde = "1.0"

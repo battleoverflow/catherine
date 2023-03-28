@@ -8,7 +8,7 @@
     },
     "package": {
       "productName": "catherine",
-      "version": "0.4.2"
+      "version": "0.5.0"
     },
     "tauri": {
       "allowlist": {
@@ -58,7 +58,7 @@
           "fullscreen": false,
           "height": 720,
           "resizable": true,
-          "title": "Catherine Framework | v0.4.2",
+          "title": "Catherine Framework | v0.5.0",
           "width": 1280
         }
       ]

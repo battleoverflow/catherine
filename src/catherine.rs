@@ -53,7 +53,7 @@ use crate::ui::controller::launch_gui;
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.4.2";
+pub(crate) static VERSION: &str = "0.5.0";
 
 pub(crate) static NETSCAN_PATH: &str = "/opt/catherine/modules/net/netscan/dist/netscan";
 pub(crate) static LINK_PARSER_PATH: &str = "/opt/catherine/modules/web/parsers/dist/links";

@@ -42,9 +42,10 @@ use crate::core::{
 };
 
 use mercy::{
-    mercy_decode,
-    mercy_extra,
-    mercy_malicious, mercy_experimental // status, url
+    decode,
+    extra,
+    malicious,
+    experimental // status, url
 };
 
 use crate::ui::controller::launch_gui;
@@ -53,13 +54,13 @@ use crate::ui::controller::launch_gui;
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.5.0";
+pub(crate) static VERSION: &str = "0.6.0";
 
-pub(crate) static NETSCAN_PATH: &str = "/opt/catherine/modules/net/netscan/dist/netscan";
-pub(crate) static LINK_PARSER_PATH: &str = "/opt/catherine/modules/web/parsers/dist/links";
-pub(crate) static MERCY_EXT_PATH: &str = "/opt/catherine/modules/mercy/dist/mercy_ext";
-pub(crate) static REDIS_ANALYSIS_PATH: &str = "/opt/catherine/modules/db/redis/dist/redis_analysis";
-pub(crate) static WIN_EXE_DUMP_PATH: &str = "/opt/catherine/modules/data/exe/dist/exec_dump";
+pub(crate) static NETSCAN_PATH: &str = "/opt/catherine/catherine-modules/net/netscan/netscan";
+pub(crate) static LINK_PARSER_PATH: &str = "/opt/catherine/catherine-modules/web/parsers/links";
+pub(crate) static MERCY_EXT_PATH: &str = "/opt/catherine/catherine-modules/mercy/extension";
+pub(crate) static REDIS_ANALYSIS_PATH: &str = "/opt/catherine/catherine-modules/db/redis";
+pub(crate) static WIN_EXE_DUMP_PATH: &str = "/opt/catherine/catherine-modules/data/exe/win_exe_dump";
 
 pub fn init(boot_msg: &str) {
 
@@ -137,12 +138,12 @@ pub fn init(boot_msg: &str) {
                 match set_method {
                     "0" | "base64" => {
                         let encoded_msg = catherine_shell(NAME, VERSION, "set_decode/base64_input".blue());
-                        pretty_output(&encoded_msg, &mercy_decode("base64", &encoded_msg), "Encoded Message", "Decoded Message");
+                        pretty_output(&encoded_msg, &decode("base64", &encoded_msg), "Encoded Message", "Decoded Message");
                     },
 
                     "1" | "rot13" => {
                         let encoded_msg = catherine_shell(NAME, VERSION, "set_decode/rot13_input".blue());
-                        pretty_output(&encoded_msg, &mercy_decode("rot13", &encoded_msg), "Encoded Message", "Decoded Message");
+                        pretty_output(&encoded_msg, &decode("rot13", &encoded_msg), "Encoded Message", "Decoded Message");
 
                     },
                     
@@ -165,21 +166,21 @@ pub fn init(boot_msg: &str) {
 
             // NOTE: Doesn't work on macOS
             "sys_info" => {
-                println!("{}Internal IP Address: {}\n", mercy_extra("system_info", "all"), mercy_extra("internal_ip", ""));
+                println!("{}Internal IP Address: {}\n", extra("system_info", "all"), extra("internal_ip", ""));
             },
 
             "defang" => {
                 let defang_url = catherine_shell(NAME, VERSION, "defang/url".blue());
                 let set_url: &str = &defang_url;
 
-                println!("{}", mercy_extra("defang", set_url));
+                println!("{}", extra("defang", set_url));
             },
 
             "whois" => {
                 let whois_url = catherine_shell(NAME, VERSION, "whois/url".blue());
                 let set_url: &str = &whois_url;
 
-                println!("{}", mercy_extra("whois", set_url));
+                println!("{}", extra("whois", set_url));
             },
 
             "mal_query" => {
@@ -187,35 +188,35 @@ pub fn init(boot_msg: &str) {
                 let set_url: &str = &mal_url;
 
                 println!("Domain: {}", set_url);
-                println!("Status: {}", mercy_malicious("status", set_url));
+                println!("Status: {}", malicious("status", set_url));
             },
 
             "id" => {
                 let id: String = catherine_shell(NAME, VERSION, "identify/string".blue());
                 let id_str: &str = &id;
 
-                println!("{}", mercy_extra("identify", id_str));
+                println!("{}", extra("identify", id_str));
             },
 
             "crack_hash" => {
                 let hash: String = catherine_shell(NAME, VERSION, "crack_hash/hash".blue());
                 let hash_str: &str = &hash;
 
-                println!("{}", mercy_extra("crack", hash_str));
+                println!("{}", extra("crack", hash_str));
             },
 
             "domain_gen" => {
                 let domain_name: String = catherine_shell(NAME, VERSION, "domain_gen/domain".blue());
                 let domain_str: &str = &domain_name;
 
-                mercy_experimental("domain_gen", domain_str);
+                experimental("domain_gen", domain_str);
             },
 
             "extract_zip" => {
                 let zip_name: String = catherine_shell(NAME, VERSION, "extract/zip".blue());
                 let zip_str: &str = &zip_name;
 
-                mercy_experimental("zip", zip_str);
+                experimental("zip", zip_str);
             },
 
             // Launches the GUI
@@ -239,8 +240,7 @@ pub fn init(boot_msg: &str) {
                 }
 
                 if existence("/opt/catherine") {
-                    let new_dir = "/opt/catherine";
-                    let set_dir = Path::new(new_dir);
+                    let set_dir = Path::new("/opt/catherine");
 
                     if let Err(err) = env::set_current_dir(&set_dir) {
                         println!("{}", err);
@@ -249,8 +249,8 @@ pub fn init(boot_msg: &str) {
                     // Downloads Catherine modules from GitHub
                     git_downloader("https://github.com/azazelm3dj3d/catherine-modules.git");
 
-                    if existence("/opt/catherine/modules") {
-                        println!("\nInstallation complete! Modules can be found here: /opt/catherine/modules\n");
+                    if existence("/opt/catherine") {
+                        println!("\nInstallation complete! Modules can be found here: /opt/catherine/catherine-modules\n");
 
                         if let Err(err) = env::set_current_dir(&set_dir) {
                             println!("{}", err);

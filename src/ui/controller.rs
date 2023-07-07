@@ -20,20 +20,20 @@ use chrono::{
 };
 
 use mercy::{
-  mercy_decode,
-  mercy_extra,
-  mercy_experimental
+  decode,
+  extra,
+  experimental
 };
 
 #[tauri::command]
 fn decode_string(method_name: &str, encoded_data: &str) -> String {
-  format!("Decoded String: {}", mercy_decode(method_name, encoded_data))
+  format!("Decoded String: {}", decode(method_name, encoded_data))
 }
 
 #[tauri::command]
 fn sys_info() -> String {
   if env::consts::OS == "linux" {
-    format!("{}Internal IP Address: {}\n", mercy_extra("system_info", "all"), mercy_extra("internal_ip", ""))
+    format!("{}Internal IP Address: {}\n", extra("system_info", "all"), extra("internal_ip", ""))
   } else {
     format!("Command not available on your operating system yet!")
   }
@@ -41,38 +41,38 @@ fn sys_info() -> String {
 
 #[tauri::command]
 fn defang_string(defang_value: &str) -> String {
-  format!("Defanged: {}", mercy_extra("defang", defang_value))
+  format!("Defanged: {}", extra("defang", defang_value))
 }
 
 #[tauri::command]
 fn whois_search(whois_url: &str) -> String {
-  format!("WHOIS Data: \n{}", mercy_extra("whois", whois_url))
+  format!("WHOIS Data: \n{}", extra("whois", whois_url))
 }
 
 // Causes extreme lag. Needs to be reviewed.
 // #[tauri::command]
 // fn malicious_search(mal_url: &str) -> String {
-//   format!("URL Status: {}!", mercy_malicious("status", mal_url))
+//   format!("URL Status: {}!", malicious("status", mal_url))
 // }
 
 #[tauri::command]
 fn id_string(id_str: &str) -> String {
-  format!("Guess: {}", mercy_extra("identify", id_str))
+  format!("Guess: {}", extra("identify", id_str))
 }
 
 #[tauri::command]
 fn crack_hash(hash_cracker: &str) -> String {
-  format!("{}", mercy_extra("crack", hash_cracker))
+  format!("{}", extra("crack", hash_cracker))
 }
 
 #[tauri::command]
 fn domain_gen(domain_str: &str) -> String {
-  format!("{:?}", mercy_experimental("domain_gen", domain_str))
+  format!("{:?}", experimental("domain_gen", domain_str))
 }
 
 #[tauri::command]
 fn extract_zip(extract_zip_file: &str) {
-  mercy_experimental("zip", extract_zip_file)
+  experimental("zip", extract_zip_file)
 }
 
 #[tauri::command]

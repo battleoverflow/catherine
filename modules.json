@@ -1,0 +1,55 @@
+{
+    "author": "azazelm3dj3d",
+    "version": "0.1.26",
+    "numOfModules": "6",
+    "ModulesList": [
+        {
+            "id": 1,
+            "name": "NetScan",
+            "description": "Collects publicly available network information about a host",
+            "version": "1.0.9",
+            "source_path": "net/netscan/src/*",
+            "dist_path": "net/netscan/dist/netscan"
+        },
+        {
+            "id": 2,
+            "name": "links",
+            "description": "Parses web content, extracting external and internal links",
+            "version": "0.2.14",
+            "source_path": "web/parsers/links.py",
+            "dist_path": "web/parsers/dist/links"
+        },
+        {
+            "id": 3,
+            "name": "Mercy Extension",
+            "description": "Suite of methods for decryption and decoding data, extends the Mercy Rust crate",
+            "version": "1.4.15",
+            "source_path": "mercy/extenstion.py",
+            "dist_path": "mercy/dist/extenstion"
+        },
+        {
+            "id": 4,
+            "name": ["c_hex_dump", "rust_hex_dump"],
+            "description": "Dumps hexadecimal information for most file types (.exe, .toml, .c, etc.)",
+            "version": "0.1.11",
+            "source_path": ["data/hex/c/c_hex_dump.c", "data/hex/rust/rust_hex_dump.rs"],
+            "dist_path": ["data/hex/c/dist/hex.so", "data/hex/rust/rust_hex_dump.rs"]
+        },
+        {
+            "id": 5,
+            "name": "redis_analysis",
+            "description": "Real-time Redis database analysis and monitoring",
+            "version": "1.3.36",
+            "source_path": "db/redis/redis_analysis.py",
+            "dist_path": "db/redis/dist/redis_analysis"
+        },
+        {
+            "id": 6,
+            "name": "exec_dump_win",
+            "description": "Multi-format parser built to extract various data points from Windows executables, object binaries, DLLs and more (32-bit & 64-bit)",
+            "version": "0.1.10",
+            "source_path": "data/exe/exec_dump_win.py",
+            "dist_path": "data/exe/dist/exec_dump_win"
+        }
+    ]
+}

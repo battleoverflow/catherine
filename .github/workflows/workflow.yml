@@ -1,0 +1,28 @@
+name: Catherine Workflow
+
+on: [push]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    name: Testing Catherine
+    runs-on: ubuntu-latest
+    
+    steps:
+      - run: cargo test --verbose
+
+  check:
+    name: Checking Catherine
+    runs-on: ubuntu-latest
+    
+    steps:
+      - run: cargo check --verbose
+
+  build:
+    name: Building Catherine
+    runs-on: ubuntu-latest
+    
+    steps:
+      - run: cargo build --verbose

@@ -26,7 +26,7 @@
                         <li>
                             <ul role="list" class="-mx-2 space-y-1">
                                 <li>
-                                    <a href="index.html" class="bg-zinc-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    <a href="index.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                                         Home
                                     </a>
                                 </li>
@@ -36,7 +36,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="sysdump.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    <a href="sysdump.html" class="bg-zinc-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                                         Dump System Information (Linux only)
                                     </a>
                                 </li>
@@ -85,8 +85,24 @@
         </div>
 
         <main class="py-10 lg:pl-72">
-            <div class="grid place-items-center h-screen">
-                <img src="catherine_icon.png" alt="">
+            <div class="grid place-items-center">
+                <div>
+                    <div class="mt-3 text-3xl font-bold leading-8 text-center text-white">
+                        Dump System Information (Linux only)
+                    </div>
+                    <div class="justify-center mt-2">
+                        <button class="peer block min-h-[auto] rounded bg-transparent py-[0.32rem] px-3 border-2 border-black w-full text-black bg-white hover:bg-black hover:text-white hover:border-white" onclick="sysInfo()">
+                            Dump
+                        </button>
+                    </div>
+
+                    <div class="justify-center mt-2">
+                        <h1 class="text-2xl text-center text-white">Output</h1>
+                        <div class="border-2 border-black bg-white mt-5">
+                            <p class="text-black text-center" id="res_1"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>

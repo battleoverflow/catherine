@@ -13,19 +13,10 @@ use std::{
 
 use mercy::hex;
 use libloading::{ Library, Symbol };
-use serde_json::Value;
 
 fn access_c_lib(convert_file: &str) {
     if Path::new(convert_file).exists() {
-        let json_file: &str = "catherine.json";
-
-        let json_parse = {
-            // Load the JSON file and convert to an easier to read format
-            let json_convert = std::fs::read_to_string(&json_file).expect("Unable to locate file");
-            serde_json::from_str::<Value>(&json_convert).unwrap()
-        };
-
-        let filepath = &json_parse["config"]["c_hex_dump_filepath"];
+        let filepath = "/opt/catherine/modules/formats/hex/hex.so";
 
         // Being precautious - don't want to even initialize an unsafe ability if the file doesn't exist
         unsafe {

@@ -19,7 +19,7 @@ use colored::{ Colorize, ColoredString };
 use serde_json::Value;
 
 use super::{
-    x::catherine_shell,
+    shell::catherine_shell,
     utils::{
         connection_handler,
         find_open_ports,

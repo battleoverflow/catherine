@@ -38,7 +38,7 @@ use crate::core::{
         git_downloader,
         existence
     },
-    x::catherine_shell
+    shell::catherine_shell
 };
 
 use mercy::{
@@ -66,7 +66,6 @@ pub fn init(boot_msg: &str) {
 
     // Cool little boot message
     println!("\n{}", boot_msg);
-    thread::sleep(time::Duration::from_millis(1000));
 
     let booted_time = Local::now();
     let (is_pm, hour) = booted_time.hour12();

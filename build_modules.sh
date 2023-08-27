@@ -5,23 +5,22 @@
 # License: BSD 2-Clause
 
 # NetScan
-# function netscan() {
-#     cd src/modules/net/netscan/src
-#     echo "[+] Configuring NetScan module..."
+# TODO: Test this function to verify it works, Go is the odd man out
+function netscan() {
+    cd src/modules/net/netscan/src
+    echo "[+] Configuring NetScan module..."
     
-#     go build -o netscan
+    go build src/modules/net/netscan/src/main.go -o /opt/catherine/modules/net/netscan
 
-#     if [ -f "netscan" ]
-#     then
-#         echo "[+] NetScan successfully built"
-#     else
-#         echo "[-] NetScan was not built properly"
-#     fi
+    if [ -f "/opt/catherine/modules/net/netscan" ]
+    then
+        echo "[+] NetScan module successfully built"
+    else
+        echo "[-] NetScan module was not built properly"
+    fi
 
-#     echo ""
-
-#     mv netscan /opt/catherine/modules/
-# }
+    echo ""
+}
 
 # Web parsers
 function parsers() {
@@ -84,6 +83,7 @@ function mercy_ext() {
     echo ""
 }
 
+# netscan
 parsers
 exec_dump
 db_redis

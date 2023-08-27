@@ -6,9 +6,13 @@
     Catherine
 </h1>
 
-The Catherine Framework is a general-purpose cybersecurity framework built to aggregate, validate, decode, decrypt, and maintain data. Catherine currently collects information from dumping hexadecimal content from files, validates malicious domains & IP addresses, attempts to crack unknown hashes, handles real-time database analysis, various types of decoding, and much more. Thanks to Catherine being built in an easily packaged executable, you can quickly download the tool by running `cargo install catherine` via the `Cargo` ecosystem. Catherine can also be quickly compiled by pulling down the source code from `git` and simply running `cargo build`.
+The Catherine Framework is a general-purpose cybersecurity framework built to provide extended support to defense (blue & purple) operations. Catherine currently collects information from dumping hexadecimal content from files, validates malicious domains & IP addresses, attempts to crack unknown hashes, handles real-time database analysis, various types of decoding, and much more in a quick CLI utility. Thanks to Catherine being built in an easily packaged executable, you can quickly download the tool by running `cargo install catherine` via the `Cargo` ecosystem. Catherine can also be quickly compiled by pulling down the source code from `git` and simply running `cargo build` or `make` to build alongside modules.
+
+NOTE: Modules do require Go, Python, and C build utilities to be installed.
 
 Catherine provides a Command Line Interface (CLI) and Graphical User Interface (GUI) built into the executable. This means whether you install from source or `Cargo`, you can choose your method of use.
+
+This project will most likely be in an experimental state for a long time. This project is a personal endeavor to explore different ways to control or manipulate data utilizing Rust. A more stable and production-oriented crate is available here: [Mercy](https://github.com/azazelm3dj3d/mercy). Mercy is an open-source Rust crate and CLI designed for building cybersecurity utilities and projects.
 
 ## Installation
 
@@ -34,16 +38,13 @@ cargo build
 
 Now you'll have a local debug build available for testing under `target/debug/catherine`.
 
-Catherine also offers custom modules for Linux operating systems. You can access these modules by installing Catherine via the `catherine_install` script.
-
-You can review the script [here](https://github.com/azazelm3dj3d/catherine/blob/main/catherine_install).
+If you're interested in working with the Catherine modules, you can use the `make` build ecosystem to create executables for Catherine:
 
 ```bash
-# The script requires sudo privileges to build a directory under `/opt/catherine/`
-sudo ./catherine_install
+make
 ```
 
-NOTE: I am working on converting all external [modules](https://github.com/azazelm3dj3d/catherine-modules) (Python, C, Go) into native modules (Rust) to offer everything in a built-in executable via `Cargo` without any extra steps, but for now, I've made sure to keep them accessible (excluding the GUI) for extended functionality.
+I am working on converting all external [modules](https://github.com/azazelm3dj3d/catherine-modules) (Python, C, Go) into native modules (Rust) to offer everything in a built-in executable via `Cargo` without any extra steps, but for now, I've made sure to keep them accessible (excluding the GUI) for extended functionality.
 
 ## Usage
 
@@ -58,7 +59,5 @@ If a GUI is more your style, there is a simple version available with the majori
 ```bash
 🦀 Catherine [v0.x.x] (None) ☀️  〉launch
 ```
-
-NOTE: I am still working on making the GUI a little nicer looking, but a basic version is currently available for testing.
 
 If a bug or issue is found, please report it [here](https://github.com/azazelm3dj3d/catherine/issues).

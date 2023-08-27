@@ -19,7 +19,7 @@ use std::{
 
 use colored::Colorize;
 
-use super::x::catherine_shell;
+use super::shell::catherine_shell;
 
 use crate::catherine::{ NAME, VERSION };
 

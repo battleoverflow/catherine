@@ -1,6 +1,6 @@
 [package]
 name = "catherine"
-description = "The Catherine Framework is a general-purpose cybersecurity framework built to aggregate, validate, decode, decrypt, and maintain data."
+description = "The Catherine Framework is a general-purpose cybersecurity framework built to provide extended support to defense (blue & purple) operations."
 version = "0.6.0"
 authors = ["azazelm3dj3d"]
 license = "BSD-2-Clause"

@@ -10,7 +10,7 @@ NOTE: Modules do require Go, Python, and C build utilities to be installed.
 
 Catherine provides a Command Line Interface (CLI) and Graphical User Interface (GUI) built into the executable. This means whether you install from source or `Cargo`, you can choose your method of use.
 
-This project will most likely be in an experimental state for a long time. This project is a personal endeavor to explore different ways to control or manipulate data utilizing Rust. A more stable and production-oriented crate is available here: [Mercy](https://github.com/azazelm3dj3d/mercy). Mercy is an open-source Rust crate and CLI designed for building cybersecurity utilities and projects.
+This project will most likely be in an experimental state for a long time. This project is a personal endeavor to explore different ways to control or manipulate data utilizing Rust. A more stable and production-oriented crate is available [here](https://github.com/azazelm3dj3d/mercy). Mercy is an open-source Rust crate and CLI designed for building cybersecurity utilities and projects.
 
 ## Installation
 

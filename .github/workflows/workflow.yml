@@ -1,0 +1,31 @@
+name: Catherine
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  workflow:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Configuring
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgtk-3-dev libsoup2.4-dev webkit2gtk-4.0 libappindicator3-dev librsvg2-dev
+
+    - name: Checking
+      run: cargo check --verbose
+
+    - name: Testing
+      run: cargo test --verbose
+
+    - name: Building
+      run: cargo build --verbose

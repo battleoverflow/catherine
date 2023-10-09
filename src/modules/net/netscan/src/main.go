@@ -4,4 +4,12 @@
     License: BSD 2-Clause
 */
 
-pub mod formats;
+package main
+
+import (
+	cmds "netscan/cmds/cli"
+)
+
+func main() {
+	cmds.NetCommands()
+}

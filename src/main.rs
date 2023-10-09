@@ -21,5 +21,5 @@ fn main() {
     // Returns the banner vector
     // Randomizes u8 integer (+ converts to usize) for random banner from vector
     catherine::init(&banners()[num as usize]);
-    catherine::shutdown("You know what they say cowboy, easy come easy go...");
+    catherine::shutdown("Whatever happens, happens");
 }

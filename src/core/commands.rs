@@ -19,7 +19,7 @@ use colored::{ Colorize, ColoredString };
 use serde_json::Value;
 
 use super::{
-    x::catherine_shell,
+    shell::catherine_shell,
     utils::{
         connection_handler,
         find_open_ports,
@@ -30,7 +30,7 @@ use super::{
 };
 
 use crate::{
-    modules::rust_hex_dump::collect_hex,
+    modules::formats::hex::rs_hex_dump::collect_hex,
     core::utils::pretty_output
 };
 
@@ -71,7 +71,7 @@ pub fn start_server(addr: &str) {
 pub fn view_modules() {
     
     // JSON file
-    let json_file: &str = "/opt/catherine/modules/modules.json"; // Local
+    let json_file: &str = "/opt/catherine/catherine-modules/modules.json"; // Local
 
     let json_parse = {
         // Load the JSON file and convert to an easier to read format
@@ -111,25 +111,17 @@ pub fn set_module() {
 
             // Go acts a little funky on WSL for some reason
             if set_host == "help" {
-                if env::consts::OS == "linux" {
-                    Command::new(NETSCAN_PATH)
-                            .arg("help")
-                            .status()
-                            .expect("Failed to execute process");
-                } else {
-                    println!("Unable to run module on this operating system");
-                }
+                Command::new(NETSCAN_PATH)
+                        .arg("help")
+                        .status()
+                        .expect("Failed to execute process");
             } else {
-                if env::consts::OS == "linux" {
-                    Command::new(NETSCAN_PATH)
-                            .arg("all")
-                            .arg("--host")
-                            .arg(set_host)
-                            .status()
-                            .expect("Failed to execute process");
-                } else {
-                    println!("Unable to run module on this operating system");
-                }
+                Command::new(NETSCAN_PATH)
+                        .arg("all")
+                        .arg("--host")
+                        .arg(set_host)
+                        .status()
+                        .expect("Failed to execute process");
             }
         },
 
@@ -140,14 +132,10 @@ pub fn set_module() {
             println!("{}", module_activating);
             thread::sleep(time::Duration::from_secs(1));
 
-            if env::consts::OS == "linux" {
-                Command::new(LINK_PARSER_PATH)
-                        .arg(set_host)
-                        .status()
-                        .expect("Failed to execute process");
-            } else {
-                println!("Unable to run module on this operating system");
-            }
+            Command::new(LINK_PARSER_PATH)
+                    .arg(set_host)
+                    .status()
+                    .expect("Failed to execute process");
         },
 
         "hex" | "Hex" | "set_module hex" => {
@@ -187,13 +175,9 @@ pub fn set_module() {
             let set_db = catherine_shell(NAME, VERSION, "set_module/db_analysis/set_db".blue());
 
             if set_db == "redis" || set_db == "Redis" || set_db == "0" {
-                if env::consts::OS == "linux" {
-                    Command::new(REDIS_ANALYSIS_PATH)
-                            .status()
-                            .expect("Failed to execute process");
-                } else {
-                    println!("Unable to run module on this operating system");
-                }
+                Command::new(REDIS_ANALYSIS_PATH)
+                        .status()
+                        .expect("Failed to execute process");
             } else {
                 println!("Database is not supported yet");
             }
@@ -208,14 +192,10 @@ pub fn set_module() {
             println!("NOTE: {}", note_for_user);
             thread::sleep(time::Duration::from_secs(1));
 
-            if env::consts::OS == "linux" {
-                Command::new(WIN_EXE_DUMP_PATH)
-                        .arg(file_loc)
-                        .status()
-                        .expect("Failed to execute process");
-            } else {
-                println!("Unable to run module on this operating system");
-            }
+            Command::new(WIN_EXE_DUMP_PATH)
+                    .arg(file_loc)
+                    .status()
+                    .expect("Failed to execute process");
         },
 
         "list" | "view" => {
@@ -226,7 +206,7 @@ pub fn set_module() {
 
         "help" => {
             // JSON file
-            let json_file = "/opt/catherine/modules/modules.json"; // Local
+            let json_file = "/opt/catherine/catherine-modules/modules.json"; // Local
 
             let json_parse = {
                 // Load the JSON file and convert to an easier to read format
@@ -332,7 +312,7 @@ pub fn win_adapter_dump() {
 pub fn help_menu() {
 
     println!("\n=== General ===");
-    pretty_output("start_server\nscan_ports\nsearch_exploit\nset_decode\nsys_info\ndefang\nwhois\nmal_query\nid\ncrack_hash\ndomain_gen\nextract_zip\nlaunch\n", "Start a Rust server\nScan for open local ports\nSearch ExploitDB for an available exploit to review\nDecode an encoded message using one of our provided methods\nPrint local system information to stdout\nDefang a URL or IP address (prints to stdout)\nRun a domain registrar search against the WHOIS API\nRun a domain name search to validate if it's malicious (InQuest API)\nAttempt to identify a string's origins\nAttempt to crack an unknown hash in real-time\nGenerate a string for domain squatting or phishing assessments\nExtract zip contents that are not password protected\nLaunch a GUI built with Tauri", "Command", "Description");
+    pretty_output("start_server\nscan_ports\nsearch_exploit\nset_decode\nsys_info\ndefang\nwhois\nmal_query\nid\ncrack_hash\ndomain_gen\nset_extract\ndetect_lang\nlaunch\n", "Start a Rust server\nScan for open local ports\nSearch ExploitDB for an available exploit to review\nDecode an encoded message using one of our provided methods\nPrint local system information to stdout\nDefang a URL or IP address (prints to stdout)\nRun a domain registrar search against the WHOIS API\nRun a domain name search to validate if it's malicious\nAttempt to identify a string's origins\nAttempt to crack an unknown hash in real-time\nGenerate a string for domain squatting or phishing assessments\nExtract contents from selected files using one of our provided methods\nAttempt to detect the language being used (beta)\nLaunch a GUI built with Tauri", "Command", "Description");
 
     println!("\n=== Module ===");
     pretty_output("set_module\nview_modules", "Set one of Catherine's modules\nCurrently installed modules", "Command", "Description");
@@ -341,5 +321,5 @@ pub fn help_menu() {
     pretty_output("netscan\nparser\nhex\ndb_analysis\nexec_dump\nwin_adapter_dump", "Collects public network information about a host\nParses web content, extracting external and internal links\nExports a custom hexadecimal dump for most file types (.exe, .toml, .c, etc.)\nTerminal-based database exploration and monitoring\nMulti-format parser built to extract various data points from executables, object binaries, DLLs and more (32-bit & 64-bit)\nDumps high-level adapter information from a Windows device", "Module", "Description");
 
     println!("\n=== Help ===");
-    pretty_output("help\nversion\nexit", "Help menu\nVersion info for Catherine framework\nExit Catherine framework", "Command", "Description");
+    pretty_output("help\ninstall\nversion\nexit", "Help menu\nInstall modules\nVersion info for Catherine framework\nExit Catherine framework", "Command", "Description");
 }

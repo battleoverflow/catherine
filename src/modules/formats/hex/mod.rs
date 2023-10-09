@@ -4,4 +4,4 @@
     License: BSD 2-Clause
 */
 
-pub mod formats;
+pub mod rs_hex_dump;

@@ -82,12 +82,21 @@ const domainGen = () => {
     })
 }
 
-// Extract a zip file contents
+// Extract zip file contents
 const zipExtract = () => {
     invoke('extract_zip', {
         extractZipFile: document.getElementById("extractZipFile").value
     }).then(() => {
         document.getElementById("res_8").innerHTML = "Check terminal";
+    })
+}
+
+// Parse email contents
+const emailParse = () => {
+    invoke('parse_email', {
+        parseEmailFile: document.getElementById("parseEmailFile").value
+    }).then((response) => {
+        document.getElementById("res_9").innerHTML = response;
     })
 }
 

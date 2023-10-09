@@ -19,68 +19,74 @@
         <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-zinc-900 px-6">
                 <div class="flex h-16 shrink-0 items-center">
-                    <img class="h-8 w-auto" src="catherine_icon.png" alt="Catherine">
+                    <img class="h-20 w-auto shadow-2xl pt-5" src="catherine_icon.png" alt="Catherine">
                 </div>
                 <nav class="flex flex-1 flex-col">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
-                        <li>
-                            <ul role="list" class="-mx-2 space-y-1">
-                                <li>
-                                    <a href="index.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="decode.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                                        Decode
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="sysdump.html" class="bg-zinc-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                                        Dump System Information (Linux only)
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="defang.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                                        Defang
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="whois.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                                        WHOIS Lookup
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="identify.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                                        Identify Unknown String
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="crack_hash.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                                        Crack Hash
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="gen_domain.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                                        Generate a Domain
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="extract_zip.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                                        Extract Zip File
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <button onclick="exitCatherine()">
-                                <span class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
-                                    Exit Catherine
-                                </span>
-                            </button>
-                        </li>
+                        <ul role="list" class="-mx-2 space-y-1">
+                            <li>
+                                <a href="index.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="decode.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    Decode
+                                </a>
+                            </li>
+                            <li>
+                                <a href="sysdump.html" class="bg-zinc-800 text-white group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    Dump System Information (Linux only)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="defang.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    Defang
+                                </a>
+                            </li>
+                            <li>
+                                <a href="whois.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    WHOIS Lookup
+                                </a>
+                            </li>
+                            <li>
+                                <a href="identify.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    Identify Unknown String
+                                </a>
+                            </li>
+                            <li>
+                                <a href="crack_hash.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    Crack Hash
+                                </a>
+                            </li>
+                            <li>
+                                <a href="gen_domain.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    Generate a Domain
+                                </a>
+                            </li>
+                            <li>
+                                <a href="extract_zip.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    Extract Zip File
+                                </a>
+                            </li>
+                            <li>
+                                <a href="parse_email.html" class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                    Parse Email File
+                                </a>
+                            </li>
+                            <li>
+                                <button onclick="exitCatherine()">
+                                    <span class="text-white hover:bg-zinc-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                                        Exit Catherine
+                                    </span>
+                                </button>
+                            </li>
+                        </ul>
                     </ul>
                 </nav>
+                <p class="text-white text-xl pb-3">
+                    Catherine v0.6
+                </p>
             </div>
         </div>
 
@@ -91,7 +97,7 @@
                         Dump System Information (Linux only)
                     </div>
                     <div class="justify-center mt-2">
-                        <button class="peer block min-h-[auto] rounded bg-transparent py-[0.32rem] px-3 border-2 border-black w-full text-black bg-white hover:bg-black hover:text-white hover:border-white" onclick="sysInfo()">
+                        <button class="peer block min-h-[auto] rounded bg-transparent py-[0.32rem] px-3 border-2 border-black w-full text-black bg-white hover:bg-black hover:text-white hover:border-white transition ease-in-out duration-300" onclick="sysInfo()">
                             Dump
                         </button>
                     </div>

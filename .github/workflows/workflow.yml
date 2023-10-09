@@ -1,8 +1,8 @@
-name: Catherine Workflow
+name: Catherine
 
 on:
   push:
-    branches: ["main", "v0.6"]
+    branches: ["main"]
   pull_request:
     branches: ["main"]
 

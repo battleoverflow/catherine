@@ -76,6 +76,11 @@ fn extract_zip(extract_zip_file: &str) {
 }
 
 #[tauri::command]
+fn parse_email(parse_email_file: &str) -> String {
+  format!("{}", extra("parse_email", parse_email_file))
+}
+
+#[tauri::command]
 fn exit_catherine() -> String {
   print!("\nThanks for checking out the Catherine Framework!");
 
@@ -104,6 +109,7 @@ pub fn launch_gui() {
     crack_hash,
     domain_gen,
     extract_zip,
+    parse_email,
     exit_catherine
   ])
   .run(tauri::generate_context!())

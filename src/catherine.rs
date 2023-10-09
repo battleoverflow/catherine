@@ -211,11 +211,39 @@ pub fn init(boot_msg: &str) {
                 experimental("domain_gen", domain_str);
             },
 
-            "extract_zip" => {
-                let zip_name: String = catherine_shell(NAME, VERSION, "extract/zip".blue());
-                let zip_str: &str = &zip_name;
+            "set_extract" => {
+                println!("\nAvailable options:");
+                println!("[0] zip");
+                println!("[1] email, eml\n");
 
-                experimental("zip", zip_str);
+                let extract_method = catherine_shell(NAME, VERSION, "set_extract".blue());
+                let set_method: &str = &extract_method;
+
+                match set_method {
+                    "0" | "zip" => {
+                        let zip_name: String = catherine_shell(NAME, VERSION, "set_extract/zip".blue());
+                        let zip_str: &str = &zip_name;
+
+                        experimental("zip", zip_str);
+                    },
+
+                    "1" | "email" | "eml" => {
+
+                        let eml_file: String = catherine_shell(NAME, VERSION, "set_extract/eml".blue());
+                        let eml_str: &str = &eml_file;
+
+                        println!("{}", extra("parse_email", eml_str));
+                    },
+                    
+                    _ => { }
+                }
+            },
+
+            "detect_lang" => {
+                let lang_data: String = catherine_shell(NAME, VERSION, "detect_lang".blue());
+                let lang_str: &str = &lang_data;
+
+                println!("{}", extra("detect_lang", lang_str));
             },
 
             // Launches the GUI

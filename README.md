@@ -1,5 +1,6 @@
 <div align="center">
-    <img src="assets/catherine_banner.png" />
+    <img src="assets/catherine_icon.png" width="40%" />
+    <h1>Catherine</h1>
 </div>
 
 [![Catherine](https://github.com/azazelm3dj3d/catherine/actions/workflows/workflow.yml/badge.svg)](https://github.com/azazelm3dj3d/catherine/actions/workflows/workflow.yml)

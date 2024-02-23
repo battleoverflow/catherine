@@ -64,5 +64,5 @@ pub fn banners() -> Vec<String> {
         ", VERSION),
     ];
 
-    return banners;
+    banners
 }

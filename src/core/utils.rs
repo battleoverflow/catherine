@@ -38,7 +38,6 @@ use os_type::OSType::{
 */
 
 pub fn connection_handler(mut stream: TcpStream) {
-    
     let mut buffer = [0; 1024];
     stream.read(&mut buffer).unwrap();
 
@@ -218,7 +217,7 @@ pub fn nmap_scanner(scan_all: &str) {
 pub fn existence(dir_name: &str) -> bool {
     // Checks to see if the directory already exists
     let exploit_dir: bool = Path::new(dir_name).is_dir();
-    return exploit_dir;
+    exploit_dir
 }
 
 pub fn db_search(exploit_info: String) {

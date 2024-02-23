@@ -54,7 +54,7 @@ use crate::ui::controller::launch_gui;
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.6.0";
+pub(crate) static VERSION: &str = "0.6.1";
 
 pub(crate) static NETSCAN_PATH: &str = "/opt/catherine/catherine-modules/net/netscan/netscan";
 pub(crate) static LINK_PARSER_PATH: &str = "/opt/catherine/catherine-modules/web/parsers/links";
@@ -63,7 +63,6 @@ pub(crate) static REDIS_ANALYSIS_PATH: &str = "/opt/catherine/catherine-modules/
 pub(crate) static WIN_EXE_DUMP_PATH: &str = "/opt/catherine/catherine-modules/data/exe/win_exe_dump";
 
 pub fn init(boot_msg: &str) {
-
     // Cool little boot message
     println!("\n{}", boot_msg);
 
@@ -136,16 +135,20 @@ pub fn init(boot_msg: &str) {
 
                 match set_method {
                     "0" | "base64" => {
-                        let encoded_msg = catherine_shell(NAME, VERSION, "set_decode/base64_input".blue());
+                        let encoded_msg = catherine_shell(NAME, VERSION, "set_decode/base64".blue());
                         pretty_output(&encoded_msg, &decode("base64", &encoded_msg), "Encoded Message", "Decoded Message");
                     },
 
                     "1" | "rot13" => {
-                        let encoded_msg = catherine_shell(NAME, VERSION, "set_decode/rot13_input".blue());
+                        let encoded_msg = catherine_shell(NAME, VERSION, "set_decode/rot13".blue());
                         pretty_output(&encoded_msg, &decode("rot13", &encoded_msg), "Encoded Message", "Decoded Message");
-
                     },
-                    
+
+                    "2" | "base32" => {
+                        let encoded_msg = catherine_shell(NAME, VERSION, "set_decode/base32".blue());
+                        pretty_output(&encoded_msg, &decode("base32", &encoded_msg), "Encoded Message", "Decoded Message");
+                    },
+
                     _ => { }
                 }
             },
@@ -171,21 +174,18 @@ pub fn init(boot_msg: &str) {
             "defang" => {
                 let defang_url = catherine_shell(NAME, VERSION, "defang/url".blue());
                 let set_url: &str = &defang_url;
-
                 println!("{}", extra("defang", set_url));
             },
 
             "whois" => {
                 let whois_url = catherine_shell(NAME, VERSION, "whois/url".blue());
                 let set_url: &str = &whois_url;
-
                 println!("{}", extra("whois", set_url));
             },
 
             "mal_query" => {
                 let mal_url = catherine_shell(NAME, VERSION, "mal_query/url".blue());
                 let set_url: &str = &mal_url;
-
                 println!("Domain: {}", set_url);
                 println!("Status: {}", malicious("status", set_url));
             },
@@ -193,21 +193,18 @@ pub fn init(boot_msg: &str) {
             "id" => {
                 let id: String = catherine_shell(NAME, VERSION, "identify/string".blue());
                 let id_str: &str = &id;
-
                 println!("{}", extra("identify", id_str));
             },
 
             "crack_hash" => {
                 let hash: String = catherine_shell(NAME, VERSION, "crack_hash/hash".blue());
                 let hash_str: &str = &hash;
-
                 println!("{}", extra("crack", hash_str));
             },
 
             "domain_gen" => {
                 let domain_name: String = catherine_shell(NAME, VERSION, "domain_gen/domain".blue());
                 let domain_str: &str = &domain_name;
-
                 experimental("domain_gen", domain_str);
             },
 
@@ -215,6 +212,7 @@ pub fn init(boot_msg: &str) {
                 println!("\nAvailable options:");
                 println!("[0] zip");
                 println!("[1] email, eml\n");
+                println!("[2] pdf\n");
 
                 let extract_method = catherine_shell(NAME, VERSION, "set_extract".blue());
                 let set_method: &str = &extract_method;
@@ -223,16 +221,23 @@ pub fn init(boot_msg: &str) {
                     "0" | "zip" => {
                         let zip_name: String = catherine_shell(NAME, VERSION, "set_extract/zip".blue());
                         let zip_str: &str = &zip_name;
-
                         experimental("zip", zip_str);
                     },
 
                     "1" | "email" | "eml" => {
-
                         let eml_file: String = catherine_shell(NAME, VERSION, "set_extract/eml".blue());
                         let eml_str: &str = &eml_file;
-
                         println!("{}", extra("parse_email", eml_str));
+                    },
+
+                    "2" | "pdf" => {
+                        // TODO: Move to Mercy
+                        let pdf_file: String = catherine_shell(NAME, VERSION, "set_extract/pdf".blue());
+                        let pdf_str: &str = &pdf_file;
+
+                        let pdf_bytes = std::fs::read(pdf_str).unwrap();
+                        let pdf_data = pdf_extract::extract_text_from_mem(&pdf_bytes).unwrap();
+                        println!("{}", pdf_data);
                     },
                     
                     _ => { }
@@ -242,7 +247,6 @@ pub fn init(boot_msg: &str) {
             "detect_lang" => {
                 let lang_data: String = catherine_shell(NAME, VERSION, "detect_lang".blue());
                 let lang_str: &str = &lang_data;
-
                 println!("{}", extra("detect_lang", lang_str));
             },
 

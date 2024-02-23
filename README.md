@@ -59,6 +59,8 @@ If a GUI is more your style, there is a simple version available with the majori
 🦀 Catherine [v0.x.x] (None) ☀️  〉launch
 ```
 
+NOTE: The GUI currently has limited functionality. I plan to eventually re-build the front-end with a more modern architecture, so for now, it's "on hold" with any new CLI functionality.
+
 If a bug or issue is found, please report it [here](https://github.com/azazelm3dj3d/catherine/issues).
 
-*GUI logo provided by Freepik w/ modification from azazelm3dj3d.
+*GUI logo provided by Freepik w/ modifications from [azazelm3dj3d](https://github.com/azazelm3dj3d).

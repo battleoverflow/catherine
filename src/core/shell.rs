@@ -27,5 +27,5 @@ pub fn catherine_shell(framework: &str, version: &str, active: ColoredString) ->
     std::io::stdout().flush().unwrap();
     std::io::stdin().read_line(&mut line).expect("[ERROR] Unable to process input");
  
-    return line.trim().to_string()
+    line.trim().to_string()
 }

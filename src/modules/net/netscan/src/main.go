@@ -1,6 +1,6 @@
 /*
-    Project: Catherine Framework (https://github.com/azazelm3dj3d/catherine)
-    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    Project: Catherine Framework (https://github.com/battleoverflow/catherine)
+    Author: battleoverflow (https://github.com/battleoverflow)
     License: BSD 2-Clause
 */
 

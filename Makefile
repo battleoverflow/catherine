@@ -1,9 +1,9 @@
-# Project: Catherine Framework (https://github.com/azazelm3dj3d/catherine)
-# Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+# Project: Catherine Framework (https://github.com/battleoverflow/catherine)
+# Author: battleoverflow (https://github.com/battleoverflow)
 # License: BSD 2-Clause
 
 NAME=catherine
-PROJ_VERSION=0.6.0
+PROJ_VERSION=0.6.1
 
 run:
 	@echo "Building $(NAME) v$(PROJ_VERSION)"

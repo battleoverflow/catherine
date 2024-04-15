@@ -1,13 +1,13 @@
 [package]
 name = "catherine"
 description = "The Catherine Framework is a general-purpose cybersecurity framework built to provide extended support for defense operations."
-version = "0.6.0"
-authors = ["azazelm3dj3d"]
+version = "0.6.1"
+authors = ["battleoverflow"]
 license = "BSD-2-Clause"
 categories = ["cryptography", "command-line-utilities", "encoding"]
 keywords = ["cybersecurity", "blueteam", "framework", "security", "defense"]
 edition = "2021"
-repository = "https://github.com/azazelm3dj3d/catherine"
+repository = "https://github.com/battleoverflow/catherine"
 
 [build-dependencies]
 tauri-build = { version = "1.2.1", features = [] }

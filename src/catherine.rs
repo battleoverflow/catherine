@@ -1,6 +1,6 @@
 /*
-    Project: Catherine Framework (https://github.com/azazelm3dj3d/catherine)
-    Author: azazelm3dj3d (https://github.com/azazelm3dj3d)
+    Project: Catherine Framework (https://github.com/battleoverflow/catherine)
+    Author: battleoverflow (https://github.com/battleoverflow)
     License: BSD 2-Clause
 */
 
@@ -54,7 +54,7 @@ use crate::ui::controller::launch_gui;
 extern crate ipconfig;
 
 pub(crate) static NAME: &str = "Catherine";
-pub(crate) static VERSION: &str = "0.6.0";
+pub(crate) static VERSION: &str = "0.6.1";
 
 pub(crate) static NETSCAN_PATH: &str = "/opt/catherine/catherine-modules/net/netscan/netscan";
 pub(crate) static LINK_PARSER_PATH: &str = "/opt/catherine/catherine-modules/web/parsers/links";
@@ -253,7 +253,7 @@ pub fn init(boot_msg: &str) {
 
             "version" => {
                 println!("\nCatherine Framework v{}", VERSION);
-                println!("Author: azazelm3dj3d (https://github.com/azazelm3dj3d)\n");
+                println!("Author: battleoverflow (https://github.com/battleoverflow)\n");
             },
 
             // Installs custom modules
@@ -274,7 +274,7 @@ pub fn init(boot_msg: &str) {
                     }
 
                     // Downloads Catherine modules from GitHub
-                    git_downloader("https://github.com/azazelm3dj3d/catherine-modules.git");
+                    git_downloader("https://github.com/battleoverflow/catherine-modules.git");
 
                     if existence("/opt/catherine") {
                         println!("\nInstallation complete! Modules can be found here: /opt/catherine/catherine-modules\n");
